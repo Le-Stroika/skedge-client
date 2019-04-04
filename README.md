@@ -6,7 +6,7 @@ Python
 JS
 - Vue-grid-layout (https://github.com/jbaysolutions/vue-grid-layout)
 
-##Usage
+## Usage
 Run ```python3 uoftScrape/scripts/req.py```
 * this gets the html from the registrars calendar, to be scraped
 then ```python3 uoftScrape/scripts/filter.py ```
