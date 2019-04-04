@@ -12,3 +12,6 @@ Run ```python3 uoftScrape/scripts/req.py```
 
 then ```python3 uoftScrape/scripts/filter.py ```
 * this scrapes the html saved from the previous script, 
+
+
+Rest is a work in progress..
