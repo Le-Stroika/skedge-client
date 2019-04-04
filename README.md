@@ -11,7 +11,7 @@ Run ```python3 uoftScrape/scripts/req.py```
 * this gets the html from the registrars calendar, to be scraped
 
 then ```python3 uoftScrape/scripts/filter.py ```
-* this scrapes the html saved from the previous script, 
+* this scrapes the html saved from the previous script
 
 
 Rest is a work in progress..
