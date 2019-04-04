@@ -9,5 +9,6 @@ JS
 ## Usage
 Run ```python3 uoftScrape/scripts/req.py```
 * this gets the html from the registrars calendar, to be scraped
+
 then ```python3 uoftScrape/scripts/filter.py ```
 * this scrapes the html saved from the previous script, 
