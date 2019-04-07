@@ -3,6 +3,7 @@ Useful for when registrar has released summer courses but enrolment hasn't begun
 ## Dependencies
 Python
 - BeautifulSoup 4
+
 JS
 - Vue-grid-layout (https://github.com/jbaysolutions/vue-grid-layout)
 
