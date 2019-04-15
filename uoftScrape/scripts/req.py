@@ -8,6 +8,6 @@ data = {'sess':'summer',
 	'course': ''}
 
 r = requests.post(url = API_ENDPOINT, data = data)
-f= open("lotsofhtml.txt","w+")
+f= open("output/lotsofhtml.txt","w+")
 f.write(r.text)
 f.close() 
