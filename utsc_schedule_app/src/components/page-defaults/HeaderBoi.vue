@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Added "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
@@ -39,6 +39,7 @@ a {
 }
 .headbar h1{
   font-size: 5em;
+  color: #f1f1f1;
 }
 img{
   max-width: 10%;

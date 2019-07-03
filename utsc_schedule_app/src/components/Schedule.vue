@@ -60,6 +60,7 @@
 
 <script>
 var calLayout = [];
+import Vue from 'vue';
 import json from '../assets/courses.json'
 export default {
     name: 'Schedule',
@@ -70,11 +71,13 @@ export default {
 
     data(){
         return{
+            
             HeadLayout: [],
             TimesLayout: [],
             days: [],
             courses: json,
             addedCourses: [],
+            addedCourseNames: [],
         }
     },
 
@@ -90,16 +93,60 @@ export default {
         // for (let ting of JSON.parse(JSON.stringify(this.TimesLayout))){
         //     console.log(ting.uniq)
         // }
+        this.timeToRowPosition  =
+            {
+                '8:00 AM': 0*6,
+                '8:30 AM': 1*6,
+                '9:00 AM': 2*6,
+                '9:30 AM': 3*6,
+                '10:00 AM': 4*6,
+                '10:30 AM': 5*6,
+                '11:00 AM': 6*6,
+                '11:30 AM': 7*6,
+                '12:00 PM': 8*6,
+                '12:30 PM': 9*6,
+                '1:00 PM': 10*6,
+                '1:30 PM': 11*6,
+                '2:00 PM': 12*6,
+                '2:30 PM': 13*6,
+                '3:00 PM': 14*6,
+                '3:30 PM': 15*6,
+                '4:00 PM': 16*6,
+                '4:30 PM': 17*6,
+                '5:00 PM': 18*6,
+                '5:30 PM': 19*6,
+                '6:00 PM': 20*6,
+                '6:30 PM': 21*6,
+                '7:00 PM': 22*6,
+                '7:30 PM': 23*6,
+                '8:00 PM': 24*6,
+                '8:30 PM': 25*6,
+                '9:00 PM': 26*6,
+                '9:30 PM': 27*6,
+            }
+        this.dayToColumn = 
+        {
+            "MO":1,
+            "TU":2,
+            "WE":3,
+            "TH":4,
+            "FR":5,
+        }
     },
 
     watch: {
         courseAdd: function(oldval, newval){
-            tempval  = newval
-            if (! newval in addedCourses){
-                addedCourses.append(newval)
+            if (! (newval.code in this.addedCourseNames)){
+                this.addedCourseNames.push(oldval.code)
+                this.addedCourses.push(JSON.parse(JSON.stringify(oldval)))
+                this.insertCourse(JSON.parse(JSON.stringify(oldval)))
             }
-            console.log(addedCourses)
+            // check values to perhaps remove course
+            console.log(JSON.parse(JSON.stringify(this.addedCourses)))
+            this.$forceUpdate()
         }
+
+        
     },
 
     methods: {
@@ -121,12 +168,28 @@ export default {
             return res;
         },
 
-        /** given a course code, opens modal with course info, used to populate schedule */
-        openCourse: function(code){
-            for (let course of this.courses){
-                if (course.code.trim()==code.trim()){
-                    console.log('congrats bud')
+        /** TODO: FIX FUNCTION FOR INSERTING COURSE INTO SCHEDULE */
+        insertCourse: function(courseData){
+            console.log('coursedata', courseData)
+            /* determine timeslots */
+            // use lecIndex and tutIndex to determine which dates/times to use
+            var lecIndexes = [];
+            var tutIndexes = [];
+            for (let i=0; i<courseData.lec.length; i++){
+                if (courseData.lec[i] == courseData.tutorialCode){
+                    tutIndexes.push(i)
                 }
+                else if (courseData.lec[i] == courseData.lectureCode){
+                    lecIndexes.push(i)
+                }
+            }
+            for (let i of lecIndexes){
+                let cellIndex = this.timeToRowPosition[courseData.start[i].trim()+' PM'];
+                cellIndex = cellIndex + this.dayToColumn[courseData.day[i]];
+                Vue.set(this.TimesLayout[cellIndex],'i', 'looky looky here bitch')
+                // todo: make text gen function for course info
+                // tood: get the times consistent..
+                //after filling cell with text, fill other cells below by using end time.
             }
         },
 
@@ -152,9 +215,9 @@ export default {
                     cell.i=''
                 }
                 cell.uniq = (i%2 == 1 && i>0) ? times[k].replace('00', '30') : times[k];
-                
+                cell.innerText=''
                 res.push(cell)
-                // now make empty rows
+                // now make empty row
                 for (let j=0; j<5; j++){
                     let rowCell = {};
                     rowCell.x = 2+j*2
@@ -168,6 +231,7 @@ export default {
                 }
                 // do over for
             }
+            console.log(res)
             return res;
         },
 
@@ -185,7 +249,7 @@ body, html {
 }
 #mainTing{
     width:100%;
-    background-color:rgba(174, 163, 241, 0.3);
+    background-color:#f1f1f1;
 }
 #week-head div, .center{
     justify-content: center;
@@ -193,9 +257,14 @@ body, html {
 }
 .vue-grid-item{
     /* border-left: 1px solid rgba(174, 163, 241, 0.5); */
-    border-right: 1px solid rgba(174, 163, 241, 0.2);
+    border-right: 1px solid #f1f1f1;
+    background-color: #f8f9fa;
 }
 .vue-grid-item:nth-child(6n){
     border:unset;
+}
+
+.vue-grid-item:nth-child(12n+7){
+    /* background-color: unset; */
 }
 </style>

@@ -49,9 +49,13 @@ export default {
     }
   },
   methods: {
-    scopeCourse(data, lecIndex, tutIndex){
-      this.scopedCourse=data;
-      console.log(lecIndex + ' ' + tutIndex)
+    scopeCourse(data, lectureCode, tutorialCode){
+      var tempCourse = JSON.parse(JSON.stringify(data));
+      tempCourse.tutorialCode = tutorialCode
+      tempCourse.lectureCode = lectureCode
+      this.scopedCourse = tempCourse
+      console.log("data: ");console.log(data)
+      console.log(lectureCode + ' ' + tutorialCode)
     }
   },
 }
@@ -69,6 +73,7 @@ export default {
   color: #162137;
   
 }
+
 body, html{
   margin: 0;
   padding: 0;

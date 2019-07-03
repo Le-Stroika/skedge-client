@@ -101,8 +101,9 @@ export default {
 			return 'yayeet'
 		},
 		addCourse(){
-			// use form info to send the right indexes
-			this.$emit('testbroadcast', this.courseMap[this.inputField], 1, 1)
+			// use form info to send the right lec numbers and tutorial numbers
+			this.$emit('testbroadcast', this.courseMap[this.inputField], "LEC01", "TUT0001")
+			//todo: un-hardcode the lec and tut
 		}
 
 	},
