@@ -8,18 +8,21 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.3.2",
+    "core-js": "^2.6.5",
+    "themer": "github:alex-greff/themer",
     "vue": "^2.6.10",
-    "vuex": "^3.0.1"
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1",
+    "vuex-easy-firestore": "^1.34.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.0.0",
-    "@vue/cli-plugin-eslint": "^4.0.0",
-    "@vue/cli-service": "^4.0.0",
-    "babel-eslint": "^10.0.3",
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-eslint": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "sass": "^1.19.0",
+    "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   }
