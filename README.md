@@ -1,18 +1,29 @@
-# UTSC-Summer-Scheduler
-Useful for when registrar has released summer courses but enrolment hasn't begun. (WIP)
-## Dependencies
-Python
-- BeautifulSoup 4
+# client
 
-JS
-- npm
+## Project setup
+```
+npm install
+```
 
-## Usage
-Run ```python3 uoftScrape/scripts/req.py```
-* this gets the html from the registrars calendar, to be scraped
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-then ```python3 uoftScrape/scripts/filter.py ```
-* this scrapes the html saved from the previous script
+### Compiles and minifies for production
+```
+npm run build
+```
 
+### Run your tests
+```
+npm run test
+```
 
-Rest is a work in progress..
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
