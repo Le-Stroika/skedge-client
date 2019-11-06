@@ -1,9 +1,6 @@
-.DS_store
+.DS_Store
 node_modules
-dist
-build
-temp
-build_temp
+/dist
 
 # local env files
 .env.local
@@ -21,4 +18,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-*.sw*
+*.sw?
