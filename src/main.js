@@ -8,6 +8,8 @@ import 'vue-material/dist/vue-material.min.css';
 
 Vue.config.productionTip = false;
 
+Vue.config.devtools = true; // TODO: remove
+
 // Material UI 
 Vue.use(MdIcon);
 
