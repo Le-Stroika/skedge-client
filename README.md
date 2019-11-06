@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8810158a-c5a2-4c15-a092-6602b57ab072/deploy-status)](https://app.netlify.com/sites/skedge/deploys)
 # client
 
 ## Project setup
