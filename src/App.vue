@@ -66,6 +66,6 @@ export default {
     @import "~themer/tools/sass/index.scss";
 
     #app {
-        background-color: color-link("global", "primary");
+        background-color: color-link("global", "background_color", "primary");
     }
 </style>
