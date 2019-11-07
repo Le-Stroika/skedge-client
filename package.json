@@ -11,7 +11,7 @@
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "immutability-helper": "^3.0.1",
-    "themer": "github:alex-greff/themer#master",
+    "themer": "github:alex-greff/themer#b80746555fed1a6fdf51c19dc1122ecbe1c22f23",
     "v-tooltip": "^2.0.2",
     "vue": "^2.6.10",
     "vue-material": "^1.0.0-beta-11",
