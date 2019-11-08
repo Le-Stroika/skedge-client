@@ -107,9 +107,9 @@ export default {
         &.disabled, &:disabled {
             & > a {
                 cursor: initial;
+                color: color-link("ButtonBase", "text_color", "secondary");
             }
 
-            color: color-link("ButtonBase", "text_color", "secondary");
             background-color: color-link("ButtonBase", "disabled_color", "primary");
 
             &:hover {
