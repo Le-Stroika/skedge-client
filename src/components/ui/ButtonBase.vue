@@ -77,6 +77,44 @@ export default {
 
 <style lang="scss" scoped>
     .Button {
-        @include standard-button-styles();
+        display: inline-block;
+
+        font-weight: 600;
+
+        color: color-link("ButtonBase", "text_color", "primary");
+        background-color: color-link("ButtonBase", "accent_color", "primary");
+
+        transition: background-color 0.5s;
+
+        border: 0;
+        border-radius: 0.7rem;
+
+        text-align: center;
+
+        & > a {
+            cursor: pointer;
+            display: inline-block;
+            margin: 1rem 1.5rem;
+            
+            text-decoration: none;
+            color: color-link("ButtonBase", "text_color", "primary");
+        }
+
+        &:hover {
+            background-color: color-link("ButtonBase", "selected_color", "primary");
+        }
+
+        &.disabled, &:disabled {
+            & > a {
+                cursor: initial;
+            }
+
+            color: color-link("ButtonBase", "text_color", "secondary");
+            background-color: color-link("ButtonBase", "disabled_color", "primary");
+
+            &:hover {
+                background-color: color-link("ButtonBase", "disabled_color", "primary");
+            }
+        }
     }
 </style>
