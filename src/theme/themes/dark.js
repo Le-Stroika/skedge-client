@@ -24,6 +24,10 @@ export default {
             selected_color: {
                 primary: "#3D4364",
                 secondary: "#556095"
+            },
+            disabled_color: {
+                primary: "#55596C",
+                secondary: "#4D75A3"
             }
         }
     }

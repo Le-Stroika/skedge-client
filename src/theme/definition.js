@@ -39,6 +39,9 @@ export const mixins = {
         },
         selected_color: {
             $mixins: 'selected'
+        },
+        disabled_color: {
+            $mixins: 'disabled'
         }
     },
     // ------------------
@@ -54,6 +57,9 @@ export const mixins = {
         $mixins: ['primary_modifier', 'secondary_modifier']
     },
     selected: {
+        $mixins: ['primary_modifier', 'secondary_modifier']
+    },
+    disabled: {
         $mixins: ['primary_modifier', 'secondary_modifier']
     },
     // ---------------
