@@ -85,6 +85,8 @@ export default {
 
             & .Home__description {
                 color: color-link("global", "text_color", "secondary");
+
+                text-align: center;
             }
 
             & .Home__campus-select {
@@ -95,10 +97,14 @@ export default {
 
                 & .Home__campus-select-title {
                     font-weight: 500;
+
+                    text-align: center;
                 }
 
                 & .Home__campus-select-options {
                     color: color-link("global", "text_color", "secondary");
+
+                    text-align: center; // TODO: might not need
                 }
             }
 
@@ -107,13 +113,21 @@ export default {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
 
                 & .Home__navigation-title {
-                    margin-bottom: 1rem;
                     font-weight: 500;
                 }
 
                 & .Home__navigation-items {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+
+                    & > * {
+                        margin-top: 1rem;
+                    }
+
                     & > *:not(:last-child) {
                         margin-right: 0.5rem;
                     }
