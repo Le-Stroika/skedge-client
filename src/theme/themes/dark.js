@@ -11,14 +11,18 @@ export default {
             },
             text_color: {
                 primary: "#FFFFFF",
-                secondary: "#E3E3E3"
+                secondary: "#D3D3D3"
+            },
+            text_color_inverted: {
+                primary: "#000000",
+                secondary: "#3C3C3C"
             },
             accent_color: {
-                primary: "#3880D6",
-                secondary: "#2768B6"
+                primary: "#434C79",
+                secondary: "#3A6BA4"
             },
             selected_color: {
-                primary: "#434C79",
+                primary: "#3D4364",
                 secondary: "#556095"
             }
         }

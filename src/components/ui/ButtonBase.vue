@@ -12,7 +12,7 @@ export default {
     props: {
         minWidth: {
             type: String,
-            default: "5rem"
+            default: "8rem"
         }
     },
     computed: {

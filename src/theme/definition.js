@@ -20,6 +20,9 @@ export const mixins = {
         text_color: {
             $mixins: 'text'
         },
+        text_color_inverted: {
+            $mixins: 'text'
+        },
         accent_color: {
             $mixins: 'accent'
         },
