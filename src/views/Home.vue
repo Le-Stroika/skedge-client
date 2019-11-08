@@ -54,6 +54,9 @@ export default {
         width: 100%;
         height: 100%;
 
+        background-color: color-link("HomeView", "background_color", "primary");
+        color: color-link("HomeView", "text_color", "primary");
+
         // Center content
         display: flex;
         flex-direction: column;
@@ -79,12 +82,12 @@ export default {
                     font-size: 5rem;
                     line-height: 6.5rem;
                     font-weight: 800;
-                    color: color-link("global", "accent_color", "secondary");
+                    color: color-link("HomeView", "accent_color", "secondary");
                 }
             }
 
             & .Home__description {
-                color: color-link("global", "text_color", "secondary");
+                color: color-link("HomeView", "text_color", "secondary");
 
                 text-align: center;
             }
@@ -102,7 +105,7 @@ export default {
                 }
 
                 & .Home__campus-select-options {
-                    color: color-link("global", "text_color", "secondary");
+                    color: color-link("HomeView", "text_color", "secondary");
 
                     text-align: center; // TODO: might not need
                 }

@@ -4,6 +4,17 @@ export const schema = {
     global: {
         $mixins: 'base_section'
     },
+    // Page views
+    HomeView: {
+        $inherits: 'global'
+    },
+    FallWinterView: {
+        $inherits: 'global'
+    },
+    SummerView: {
+        $inherits: 'global'
+    },
+    // Components
     button: {
         $inherits: 'global'
     }
