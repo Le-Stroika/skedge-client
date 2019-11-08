@@ -1,5 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8810158a-c5a2-4c15-a092-6602b57ab072/deploy-status)](https://app.netlify.com/sites/skedge/deploys)
-# client
+# skedge-client
 
 ## Project setup
 ```
@@ -14,11 +13,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
 ```
 
 ### Lints and fixes files
