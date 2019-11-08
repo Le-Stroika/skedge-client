@@ -15,7 +15,7 @@ export const schema = {
         $inherits: 'global'
     },
     // Components
-    button: {
+    ButtonBase: {
         $inherits: 'global'
     }
 };

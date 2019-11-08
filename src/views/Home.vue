@@ -22,12 +22,15 @@
                 <div class="Home__navigation-items">
                     <button-base
                         min-width="20rem"
+                        to="/fall-winter"
                     >
                         Fall-Winter
                     </button-base>
 
                     <button-base
                         min-width="20rem"
+                        to="/summer"
+                        disabled
                     >
                         Summer
                     </button-base>

@@ -1,9 +1,6 @@
-// @import "@/styles/themer.scss";
-
 @mixin standard-button-styles($base: "button") {
     display: inline-block;
 
-    padding: 1rem 1.5rem;
     font-weight: 600;
 
     color: color-link($base, "text_color", "primary");
@@ -14,19 +11,31 @@
     border: 0;
     border-radius: 0.7rem;
 
-    cursor: pointer;
     text-align: center;
+
+    & > a {
+        cursor: pointer;
+        display: inline-block;
+        margin: 1rem 1.5rem;
+        
+        text-decoration: none;
+        color: color-link($base, "text_color", "primary");
+    }
 
     &:hover {
         background-color: color-link($base, "selected_color", "primary");
     }
 
-    // &.disabled, &:disabled {
-    //     cursor: initial;
-    //     color: color-link($base, "text_color", "secondary");
+    &.disabled, &:disabled {
+        & > a {
+            cursor: initial;
+        }
 
-    //     &:hover {
-    //         background-color: color-link($base, "accent_color", "primary");
-    //     }
-    // }
+        color: color-link($base, "text_color", "secondary");
+        background-color: color-link($base, "disabled_color", "primary");
+
+        &:hover {
+            background-color: color-link($base, "disabled_color", "primary");
+        }
+    }
 }
