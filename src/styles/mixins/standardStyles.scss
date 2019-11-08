@@ -1,0 +1,20 @@
+// @import "@/styles/themer.scss";
+
+@mixin standard-button-styles($base: "button") {
+    display: inline-block;
+    font-size: 2rem;
+
+    padding: 0.2rem 0.5rem;
+
+    // color: color-link($base, "accent_color", "primary");
+
+    background-color: color-link($base, "accent_color", "secondary");
+
+    transition: background-color 0.5s;
+
+    border: 0.1rem solid;
+    border-radius: 0.2rem;
+
+    cursor: pointer;
+    text-align: center;
+}

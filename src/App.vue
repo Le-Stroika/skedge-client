@@ -1,12 +1,14 @@
 <template>
     <!-- <div id="app"> -->
-    <theme-provider id="app" ref="baseRef" :namespace="defaultNamespace" use-root>
-        <div id="nav">
+    <theme-provider id="App" ref="baseRef" :namespace="defaultNamespace" use-root>
+        <!-- <div id="nav">
             <router-link to="/">Home</router-link>|
             <router-link to="/summer">Summer Scheduler</router-link>|
             <router-link to="/fall-winter">Fall/Winter Scheduler</router-link>
+        </div> -->
+        <div id="App__view">
+            <router-view />
         </div>
-        <router-view />
     </theme-provider>
     <!-- </div> -->
     
@@ -65,14 +67,15 @@ export default {
 </script>
 
 <style lang="scss">
-    @import "~themer/tools/sass/index.scss";
+    // Import global styles and functions
+    // @import "@/styles/global.scss"; 
 
-    #app {
-        width: 100vw;
-        height: 100vh;
+    #App {
+        height: 100%;
 
-        // Setup global base colors
-        background-color: color-link("global", "background_color", "primary");
-        color: color-link("global", "text_color", "primary");
+        & #App__view {
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>

@@ -3,6 +3,9 @@
 export const schema = {
     global: {
         $mixins: 'base_section'
+    },
+    button: {
+        $inherits: 'global'
     }
 };
 

@@ -1,0 +1,48 @@
+// make color-link is globally available everywhere
+@import "~themer/tools/sass/index.scss"; 
+
+
+* {
+    // Global resets
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+    // Global font definition
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol";
+}
+
+* i { 
+    font-family: 'Material Icons'; 
+}
+
+html {
+    // Definition of 1rem
+    font-size: 62.5%;
+}
+
+body {
+    // Setup global base colors
+    background-color: color-link("global", "background_color", "primary");
+    color: color-link("global", "text_color", "primary");
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+// Positioning 
+.content {
+    position: relative;
+}
