@@ -21,7 +21,9 @@ import DarkTheme from "./theme/themes/dark";
 
 import ThemeProvider from "@/components/wrappers/ThemeProvider.vue";
 
+// TODO: move out to separate constants file
 const DEFAULT_NAMESPACE = "default";
+const DEFAULT_THEME = "dark";
 
 export default {
     components: {
@@ -54,7 +56,7 @@ export default {
             // Add default namespace
             this.addNamespace({
                 name: DEFAULT_NAMESPACE,
-                targetTheme: "dark", // TODO: don't hardcode
+                targetTheme: DEFAULT_THEME,
                 override: true
             })
         }
@@ -66,6 +68,11 @@ export default {
     @import "~themer/tools/sass/index.scss";
 
     #app {
+        width: 100vw;
+        height: 100vh;
+
+        // Setup global base colors
         background-color: color-link("global", "background_color", "primary");
+        color: color-link("global", "text_color", "primary");
     }
 </style>

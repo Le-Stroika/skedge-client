@@ -1,3 +1,3 @@
 <template>
-    <div>Hi</div>
+    <div>Fall/Winter Schedule Page</div>
 </template>

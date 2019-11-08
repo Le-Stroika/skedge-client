@@ -1,3 +1,3 @@
 <template>
-    <div>Hi</div>
+    <div>Summer Schedule Page</div>
 </template>

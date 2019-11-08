@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
+        Home Page
     </div>
 </template>
 
@@ -10,3 +10,10 @@ export default {
     name: 'home',
 }
 </script>
+
+
+<style lang="scss" scoped>
+    .home {
+
+    }
+</style>
