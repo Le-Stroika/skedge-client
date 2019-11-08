@@ -26,8 +26,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "@/styles/helpers.scss";
-
     .Button {
         @include standard-button-styles();
     }
