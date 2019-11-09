@@ -6,21 +6,17 @@
         :auto-hide="false"
         :open="open"
     >
+        <!-- Settings cog -->
         <icon-base
             class="SettingsCog"
             size="3rem"
             ref="cogRef"
             @click="onClick"
         >
-            <!-- TODO: remove -->
-            <!-- v-tooltip.bottom-start="{ 
-                trigger: 'click', 
-                content: 'Some shit dwhfoe nawodiha woi ', 
-                boundariesElement: 'document.body'
-            }" -->
             settings
         </icon-base>
 
+        <!-- Dropdown menu -->
         <template slot="popover">
             TODO: implement the settings dropdown menu
         </template>
@@ -29,7 +25,7 @@
 
 <script>
 /* global Power1 */
-import * as Utilities from "../../../utilities";
+import * as Utilities from "../../utilities";
 import { TweenLite } from "gsap/all";
 
 import IconBase from "@/components/ui/icons/IconBase.vue";
@@ -45,14 +41,12 @@ export default {
     },
     methods: {
         onClick(e) {
-            console.log("Clicked");
-
             const cogEl = this.$refs.cogRef.$el;
 
+            // Toggle open state
             this.open = !this.open;
 
-            console.log("open:", this.open);
-
+            // Rotation animation
             if (this.open) {
                 TweenLite.to(cogEl, 0.4, { 
                     rotation: "+=90deg",

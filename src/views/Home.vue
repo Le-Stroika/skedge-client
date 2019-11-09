@@ -1,9 +1,9 @@
 <template>
     <div class="Home">
-        <settings-cog
+        <settings-config
             class="Home__settings-cog"
         >
-        </settings-cog>
+        </settings-config>
 
         <div class="Home__content">
             <h1 class="Home__logo">
@@ -47,12 +47,12 @@
 
 <script>
 import ButtonBase from "@/components/ui/ButtonBase.vue";
-import SettingsCog from "@/components/ui/icons/SettingsCog.vue";
+import SettingsConfig from "@/components/ui/SettingsConfig.vue";
 
 export default {
     components: {
         buttonBase: ButtonBase,
-        settingsCog: SettingsCog
+        settingsConfig: SettingsConfig
     },
     name: 'home',
 }
