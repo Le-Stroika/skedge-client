@@ -49,12 +49,12 @@ export default {
             // Rotation animation
             if (this.open) {
                 TweenLite.to(cogEl, 0.4, { 
-                    rotation: "+=90deg",
+                    rotation: "-=180deg",
                     ease: Power1.easeInOut
                 });
             } else {
                 TweenLite.to(cogEl, 0.4, { 
-                    rotation: "-=90deg",
+                    rotation: "+=180deg",
                     ease: Power1.easeInOut
                 });
             }
