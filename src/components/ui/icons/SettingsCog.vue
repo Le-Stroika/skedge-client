@@ -1,29 +1,30 @@
 <template>
-    <!-- <v-popover
-        v-tooltip="{
-            boundariesElement: 'window'
-        }"
-    > -->
-    <icon-base
-        class="SettingsCog"
-        size="3rem"
-        @click="onClick"
-        ref="cogRef"
-        v-tooltip.bottom-start="{ 
-            trigger: 'click', 
-            content: 'Some shit dwhfoe nawodiha woi ', 
-            boundariesElement: 'document.body'
-        }"
+    <v-popover
+        placement="bottom-start"
+        boundaries-element="document.body"
+        trigger="manual"
+        :auto-hide="false"
+        :open="open"
     >
-        settings
-    </icon-base>
+        <icon-base
+            class="SettingsCog"
+            size="3rem"
+            ref="cogRef"
+            @click="onClick"
+        >
+            <!-- TODO: remove -->
+            <!-- v-tooltip.bottom-start="{ 
+                trigger: 'click', 
+                content: 'Some shit dwhfoe nawodiha woi ', 
+                boundariesElement: 'document.body'
+            }" -->
+            settings
+        </icon-base>
 
-        <!-- <template slot="popover">
-            <div>
-                Some shit
-            </div>
+        <template slot="popover">
+            TODO: implement the settings dropdown menu
         </template>
-    </v-popover> -->
+    </v-popover>
 </template>
 
 <script>
@@ -44,9 +45,13 @@ export default {
     },
     methods: {
         onClick(e) {
+            console.log("Clicked");
+
             const cogEl = this.$refs.cogRef.$el;
 
             this.open = !this.open;
+
+            console.log("open:", this.open);
 
             if (this.open) {
                 TweenLite.to(cogEl, 0.4, { 
@@ -66,6 +71,8 @@ export default {
 
 <style lang="scss" scoped>
     .SettingsCog {
+        display: inline-block;
+
         color: color-link("SettingsCog", "text_color", "primary");
         cursor: pointer;
 
