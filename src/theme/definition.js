@@ -17,7 +17,10 @@ export const schema = {
     // Components
     ButtonBase: {
         $inherits: 'global'
-    }
+    },
+    SettingsCog: {
+        $inherits: 'global'
+    },
 };
 
 export const mixins = {

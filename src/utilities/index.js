@@ -58,3 +58,50 @@ export const removeCSSProperty = (i_sPropertyName, i_el = null) => {
     // Remove the custom property
     el.style.removeProperty(i_sPropertyName);
 };
+
+/**
+ * Returns if the given string is a valid CSS length.
+ * Ex: '5rem', '20%', '15px, etc
+ * 
+ * @param {String} i_sLength The CSS length.
+ */
+export function isCSSLength(i_sLength) {
+    const rCSSLengthRegex = /^(\d*?.?\d+)(rem|em|px|cm|mm|in|pt|pc|ch|vw|vh|vmin|vmax|%)$/g;
+    return rCSSLengthRegex.test(i_sLength);
+}
+
+/**
+ * Returns if the given string is a valid CSS rotation.
+ * Ex: '45deg', '3.14rad', '400grad', '1turn', etc
+ * 
+ * @param {String} i_sRotation The CSS rotation.
+ */
+export function isCSSRotation(i_sRotation) {
+    const rCSSRotationRegex = /^(\d*?.?\d+)(deg|rad|grad|turn)$/g;
+    return rCSSRotationRegex.test(i_sRotation);
+}
+
+/**
+ * Returns if the given string is a valid direction.
+ * Ie: "right", "left", "up" or "down"
+ * 
+ * @param {String} i_sDirection The direction.
+ */
+export function isDirection(i_sDirection) {
+    return ["right", "left", "up", "down"].indexOf(i_sDirection) !== -1;
+}
+
+/**
+ * Returns an object containing all neccessairy styles to configure the md-icon component.
+ * 
+ * @param {String} i_sSize The CSS size.
+ * @param {String} i_sFontSizeModifier The increase modifier for the font-size relative to the base size.
+ */
+export function getIconSizeCSSStyles(i_sSize, i_sFontSizeModifier = '0rem') {
+    return {
+        width: i_sSize,
+        height: i_sSize,
+        minWidth: i_sSize,
+        fontSize: `calc(${i_sSize} + ${i_sFontSizeModifier}) !important`
+    }
+}

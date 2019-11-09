@@ -1,5 +1,10 @@
 <template>
     <div class="Home">
+        <settings-cog
+            class="Home__settings-cog"
+        >
+        </settings-cog>
+
         <div class="Home__content">
             <h1 class="Home__logo">
                 S<span class="Home__logo-k">k</span>edge
@@ -41,11 +46,13 @@
 </template>
 
 <script>
-import ButtonBase from "@/components/ui/ButtonBase.vue"
+import ButtonBase from "@/components/ui/ButtonBase.vue";
+import SettingsCog from "@/components/ui/icons/SettingsCog.vue";
 
 export default {
     components: {
-        buttonBase: ButtonBase
+        buttonBase: ButtonBase,
+        settingsCog: SettingsCog
     },
     name: 'home',
 }
@@ -60,11 +67,22 @@ export default {
         background-color: color-link("HomeView", "background_color", "primary");
         color: color-link("HomeView", "text_color", "primary");
 
+        position: relative;
+
         // Center content
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        & .Home__settings-cog {
+            position: absolute;
+
+            top: 0;
+            right: 0;
+
+            margin: 0.5rem 0.5rem 0 0;
+        }
 
         & .Home__content {
             // Center content

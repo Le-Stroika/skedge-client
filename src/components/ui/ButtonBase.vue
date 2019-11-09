@@ -30,10 +30,13 @@
 </template>
 
 <script>
+import { CSSLength } from "../../customValidators";
+
 export default {
     props: {
         minWidth: {
-            type: String, // TODO: add custom check for CSS length
+            type: String, 
+            validator: CSSLength,
             default: "8rem"
         },
         disabled: {

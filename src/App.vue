@@ -1,6 +1,11 @@
 <template>
     <!-- <div id="app"> -->
-    <theme-provider id="App" ref="baseRef" :namespace="defaultNamespace" use-root>
+    <theme-provider 
+        id="App" 
+        ref="baseRef" 
+        :namespace="defaultNamespace" 
+        use-root
+    >
         <!-- <div id="nav">
             <router-link to="/">Home</router-link>|
             <router-link to="/summer">Summer Scheduler</router-link>|
@@ -17,6 +22,8 @@
 <script>
 import { getterTypes, actionTypes } from "./store/types";
 import { mapActions, mapGetters } from "vuex";
+
+import { CSSPlugin, AttrPlugin } from "gsap/all";
 
 // Themes
 import DarkTheme from "./theme/themes/dark";
@@ -40,6 +47,10 @@ export default {
         // Instantiate Vuex data
         this.instantiateThemes();
         this.instantiateNamespaces();
+    },
+    mounted() {
+        // NOTE: this prevents the CSSPlugin and the AttrPlugin from getting tree shaked
+        const plugins = [ CSSPlugin, AttrPlugin ];
     },
     methods: {
         ...mapActions({
@@ -72,6 +83,8 @@ export default {
 
     #App {
         height: 100%;
+
+        overflow: hidden;
 
         & #App__view {
             width: 100%;
