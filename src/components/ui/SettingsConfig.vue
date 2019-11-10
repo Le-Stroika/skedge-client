@@ -5,10 +5,11 @@
         trigger="manual"
         :auto-hide="false"
         :open="open"
+        container="#App"
     >
         <!-- Settings cog -->
         <icon-base
-            class="SettingsCog"
+            :class="[cogClass, 'SettingsCog']"
             size="3rem"
             ref="cogRef"
             @click="onClick"
@@ -37,6 +38,12 @@ export default {
     data() {
         return {
             open: false,
+        }
+    },
+    props: {
+        cogClass: {
+            type: String,
+            default: null
         }
     },
     methods: {

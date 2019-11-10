@@ -1,7 +1,8 @@
 <template>
     <div class="Home">
         <settings-config
-            class="Home__settings-cog"
+            class="Home__settings"
+            cog-class="Home__settings-cog"
         >
         </settings-config>
 
@@ -75,13 +76,15 @@ export default {
         align-items: center;
         justify-content: center;
 
-        & .Home__settings-cog {
+        & .Home__settings {
             position: absolute;
 
             top: 0;
             right: 0;
 
-            margin: 0.5rem 0.5rem 0 0;
+            & /deep/ .Home__settings-cog {
+                margin: 0.5rem 0.5rem 0 0;
+            }
         }
 
         & .Home__content {
