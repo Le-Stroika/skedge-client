@@ -1,12 +1,26 @@
 <template>
     <div class="TooltipBase">
-        <slot></slot>
+        <div 
+            :class="['TooltipBase__container', containerClass]"
+            :style="[containerStyle]"
+        >
+            <slot></slot>
+        </div>
     </div>    
 </template>
 
 <script>
 export default {
-
+    props: {
+        containerClass: {
+            type: String, 
+            default: null
+        },
+        containerStyle: {
+            type: Object,
+            default: null
+        }
+    }
 }
 </script>
 
@@ -14,13 +28,17 @@ export default {
 // Note: can not be scoped b/c of the popover stylings
 
     .TooltipBase {
-        border-radius: 0.4rem;
+        // Note: doing this allows for "margins" (via padding) to be put on the 
+        // base class without v-tooltip screwing it up
 
-        background-color: color-link("global", "background_color", "secondary");
+        & .TooltipBase__container {
+            padding: 0.7rem;
+            border-radius: 0.4rem;
 
-        padding: 0.6rem;
+            background-color: color-link("global", "background_color", "secondary");
 
-        box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.2);
+            box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.2);
+        }
     }
 
 

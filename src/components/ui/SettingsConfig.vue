@@ -8,27 +8,47 @@
         container="#App"
         offset="2"
         popover-base-class="SettingsTooltipBase SettingsPopoverBase"
+        open-group="settings"
     >
         <!-- Settings cog -->
-        <icon-base
-            :class="[cogClass, 'SettingsCog']"
+        <icon-clickable
+            :class="['SettingsCog', cogClass]"
+            :style="[cogStyle]"
             size="3rem"
             ref="cogRef"
-            @click="onClick"
+            @click="toggleMenu"
         >
             settings
-        </icon-base>
+        </icon-clickable>
 
-        <!-- Dropdown menu -->
+        <!-- Tooltip menu -->
         <template slot="popover">
             <tooltip-base
-                :class="[tooltipClass, 'SettingsTooltip']"
+                :class="['SettingsTooltip', tooltipClass]"
+                :style="[tooltipStyle]"
+                container-class="SettingsTooltip__container"
             >
-                TODO: implement the settings menu
-                <br>
-                Some stuff here
-                <br>
-                Blah blah
+                <div class="SettingsTooltip__header">
+                    <div class="SettingsTooltip__header-text">
+                        General Settings
+                    </div>
+                    <icon-clickable 
+                        class="SettingsTooltip__header-close"
+                        @click="closeMenu"
+                        size="2.3rem"
+                    >
+                        close
+                    </icon-clickable>
+                </div>
+
+                <div class="SettingsTooltip__theme-select">
+                    TODO: implement theme selection
+                </div>
+
+                <div class="SettingsTooltip__campus-select">
+                    TODO: implement campus search selection
+                </div>
+
             </tooltip-base>
         </template>
     </v-popover>
@@ -39,12 +59,14 @@
 import * as Utilities from "../../utilities";
 import { TweenLite } from "gsap/all";
 
-import IconBase from "@/components/ui/icons/IconBase.vue";
+import IconClickable from "@/components/ui/icons/IconClickable.vue";
 import TooltipBase from "@/components/ui/tooltip/TooltipBase.vue";
+
+const ANIM_DURATION = 0.3;
 
 export default {
     components: {
-        iconBase: IconBase,
+        iconClickable: IconClickable,
         tooltipBase: TooltipBase
     },
     data() {
@@ -57,28 +79,43 @@ export default {
             type: String,
             default: null
         },
+        cogStyle: {
+            type: Object,
+            default: null
+        },
         tooltipClass: {
             type: String,
+            default: null
+        },
+        tooltipStyle: {
+            type: Object,
             default: null
         }
     },
     methods: {
-        onClick(e) {
-            const duration = 0.3;
-
+        openMenu() {
+            this.setOpen(true);
+        },
+        closeMenu() {
+            this.setOpen(false);
+        },
+        toggleMenu() {
+            this.setOpen(!this.open);
+        },
+        setOpen(open) {
             const cogEl = this.$refs.cogRef.$el;
 
-            // Toggle open state
-            this.open = !this.open;
+            // Set open state
+            this.open = open;
 
             // Rotation animation
             if (this.open) {
-                TweenLite.to(cogEl, duration, { 
+                TweenLite.to(cogEl, ANIM_DURATION, { 
                     rotation: "-=180deg",
                     ease: Power1.easeInOut
                 });
             } else {
-                TweenLite.to(cogEl, duration, { 
+                TweenLite.to(cogEl, ANIM_DURATION, { 
                     rotation: "+=180deg",
                     ease: Power1.easeInOut
                 });
@@ -93,23 +130,46 @@ export default {
 
     .SettingsCog {
         display: inline-block;
-
-        color: color-link("SettingsCog", "text_color", "primary");
-        cursor: pointer;
-
-        & i {
-            transition: color 0.2s;
-        }
-
-        &:hover {
-            color: color-link("SettingsCog", "text_color", "secondary");
-        }
-
         z-index: 3;
     }
     
     .SettingsTooltip {
-        margin-right: 0.3rem;
+        // This accomplishes the "margin" effect without blowing up v-tooltip
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+
+        max-width: 40rem;
+        width: 100vw;
+
+        & .SettingsTooltip__container {
+            display: flex;
+            flex-direction: column;
+
+            & .SettingsTooltip__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                & .SettingsTooltip__header-text {
+                    font-weight: 500;
+                }
+
+                & .SettingsTooltip__header-close {
+
+                }
+            }
+
+            & .SettingsTooltip__theme-select {
+                color: color-link("global", "text_color", "secondary");
+            }
+
+            & .SettingsTooltip__campus-select {
+                color: color-link("global", "text_color", "secondary");
+            }
+
+            & > *:not(:last-child) {
+                margin-bottom: 0.5rem;
+            }
+        }
     }
 
     // Transition override
