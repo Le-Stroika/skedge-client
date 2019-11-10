@@ -6,7 +6,7 @@ export default {
         global: {
             background_color: {
                 primary: "#2E2E2E",
-                secondary: "#4B4B4B",
+                secondary: "#414141",
                 tertiary: "#616161",
             },
             text_color: {

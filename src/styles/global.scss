@@ -12,6 +12,7 @@
     box-sizing: border-box;
 
     font-size: 2rem;
+    // line-height: 2.1rem;
 
 
     // Global font definition
@@ -40,6 +41,8 @@ body {
     // Setup global base colors
     background-color: color-link("global", "background_color", "primary");
     color: color-link("global", "text_color", "primary");
+
+    overflow: hidden;
 }
 
 html, body {
