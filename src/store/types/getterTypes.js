@@ -1,3 +1,7 @@
+// General store
+export const GET_SEARCH_CAMPUS = "GET_SEARCH_CAMPUS";
+export const GET_SEARCH_CAMPUS_ALL = "GET_SEARCH_CAMPUS_ALL";
+
 // Theme store
 export const GET_ALL_THEMES = "GET_ALL_THEMES";
 export const GET_THEME = "GET_THEME";

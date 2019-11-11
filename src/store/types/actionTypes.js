@@ -1,3 +1,6 @@
+// General store
+export const SET_SEARCH_CAMPUS = "SET_SEARCH_CAMPUS";
+
 // Theme store
 export const ADD_THEME = "ADD_THEME";
 export const REMOVE_THEME = "REMOVE_THEME";
