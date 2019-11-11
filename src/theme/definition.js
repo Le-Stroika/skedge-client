@@ -21,6 +21,9 @@ export const schema = {
     SettingsCog: {
         $inherits: 'global'
     },
+    Checkbox: {
+        $inherits: 'global'
+    }
 };
 
 export const mixins = {

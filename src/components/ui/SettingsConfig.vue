@@ -141,6 +141,8 @@ export default {
     .SettingsCog {
         display: inline-block;
         z-index: 3;
+
+        will-change: transform;
     }
     
     .SettingsTooltip {
@@ -195,7 +197,9 @@ export default {
 
             & .wrapper {
                 transform: translateY(-10px);
+
                 transition: transform $duration;
+                will-change: transform;
             }
         }
 
