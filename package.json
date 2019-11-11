@@ -12,7 +12,7 @@
         "core-js": "^3.3.2",
         "gsap": "^2.1.3",
         "immutability-helper": "^3.0.1",
-        "themer": "github:alex-greff/themer#b80746555fed1a6fdf51c19dc1122ecbe1c22f23",
+        "themer": "github:alex-greff/themer#e3e31b6b8cd0b104f3c6caa0722b5d8b3d940128",
         "v-tooltip": "^2.0.2",
         "vue": "^2.6.10",
         "vue-material": "^1.0.0-beta-10.2",
