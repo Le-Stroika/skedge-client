@@ -13,6 +13,7 @@
         <!-- Settings cog -->
         <icon-clickable
             :class="['SettingsCog', cogClass]"
+            :id="[cogId]"
             :style="[cogStyle]"
             size="3rem"
             ref="cogRef"
@@ -25,6 +26,7 @@
         <template slot="popover">
             <tooltip-base
                 :class="['SettingsTooltip', tooltipClass]"
+                :id="[tooltipId]"
                 :style="[tooltipStyle]"
                 container-class="SettingsTooltip__container"
             >
@@ -79,11 +81,19 @@ export default {
             type: String,
             default: null
         },
+        cogId: {
+            type: String,
+            default: null
+        },
         cogStyle: {
             type: Object,
             default: null
         },
         tooltipClass: {
+            type: String,
+            default: null
+        },
+        tooltipId: {
             type: String,
             default: null
         },

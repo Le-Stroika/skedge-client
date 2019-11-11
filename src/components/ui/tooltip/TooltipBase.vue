@@ -2,6 +2,7 @@
     <div class="TooltipBase">
         <div 
             :class="['TooltipBase__container', containerClass]"
+            :id="[containerId]"
             :style="[containerStyle]"
         >
             <slot></slot>
@@ -13,6 +14,10 @@
 export default {
     props: {
         containerClass: {
+            type: String, 
+            default: null
+        },
+        containerId: {
             type: String, 
             default: null
         },
