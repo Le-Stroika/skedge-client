@@ -2,11 +2,8 @@ import Vue from 'vue';
 
 import { getterTypes, mutationTypes, actionTypes } from '../types/index';
 
-const CAMPUS_KEYS = {
-    UTSG: "UTSG",
-    UTM: "UTM",
-    UTSC: "UTSC"
-};
+import CAMPUS_KEYS from "../../constants/campusKeys";
+
 
 // -----------------------
 // --- Check Functions ---

@@ -1,13 +1,13 @@
 <template>
     <label 
         :class="['CheckboxField', (disabled) ? 'disabled' : '']"
+        @click.prevent="onClick"
     >
         <checkbox 
             class="CheckboxField__checkbox"
             :disabled="disabled"
             :value="value"
             @input="updateValue"
-            v-bind="$attrs"
         >
         </checkbox>
         <div class="CheckboxField__content">
@@ -35,6 +35,14 @@ export default {
         // v-model passthrough
         updateValue(checked) {
             this.$emit("input", checked);
+        },
+        onClick(e) {
+            if (this.disabled) {
+                e.preventDefault();
+                return;
+            }
+
+            this.$emit("click", this.value);
         }
     }
 }
