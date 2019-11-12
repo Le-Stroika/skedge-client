@@ -116,18 +116,14 @@ export default {
             & .Checkbox__pseudo-checkbox {
                 background-color: color-link("Checkbox", "background_color", "secondary");
             }
-        }
 
-        &:hover .Checkbox__input:checked + .Checkbox__pseudo-checkbox {
-            background-color: color-link("Checkbox", "selected_color", "secondary");
+            & .Checkbox__input:checked + .Checkbox__pseudo-checkbox {
+                background-color: color-link("Checkbox", "selected_color", "secondary");
+            }
         }
 
         & .Checkbox__input:checked + .Checkbox__pseudo-checkbox {
             background-color: color-link("Checkbox", "selected_color", "primary");
-
-            // &:hover {
-            //     background-color: color-link("Checkbox", "selected_color", "secondary");
-            // }
 
             &::after {
                 opacity: 1;
