@@ -22,10 +22,6 @@
 <script>
 export default {
     props: {
-        name: {
-            type: String,
-            required: true
-        },
         disabled: {
             type: Boolean,
             default: false
@@ -57,7 +53,7 @@ export default {
 
 <style lang="scss" scoped>
     $size: 24px; // Even values work best
-    $speed: 0.1s;
+    $speed: 0.2s;
 
     .Checkbox {
         display: inline-block;
@@ -90,9 +86,9 @@ export default {
 
             transition: background-color $speed, box-shadow $speed;
 
-            &:hover {
-                background-color: color-link("Checkbox", "background_color", "secondary");
-            }
+            // &:hover {
+            //     background-color: color-link("Checkbox", "background_color", "secondary");
+            // }
 
             &::after {
                 content: '';
@@ -116,12 +112,22 @@ export default {
             }
         }
 
+        &:hover {
+            & .Checkbox__pseudo-checkbox {
+                background-color: color-link("Checkbox", "background_color", "secondary");
+            }
+        }
+
+        &:hover .Checkbox__input:checked + .Checkbox__pseudo-checkbox {
+            background-color: color-link("Checkbox", "selected_color", "secondary");
+        }
+
         & .Checkbox__input:checked + .Checkbox__pseudo-checkbox {
             background-color: color-link("Checkbox", "selected_color", "primary");
 
-            &:hover {
-                background-color: color-link("Checkbox", "selected_color", "secondary");
-            }
+            // &:hover {
+            //     background-color: color-link("Checkbox", "selected_color", "secondary");
+            // }
 
             &::after {
                 opacity: 1;

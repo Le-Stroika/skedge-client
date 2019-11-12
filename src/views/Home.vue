@@ -19,8 +19,19 @@
                 </div>
                 <div class="Home__campus-select-options">
                     <!-- TODO: add campus options -->
-                    <checkbox name="hi" v-model="temp1" disabled></checkbox>
-                    <checkbox name="hi" v-model="temp2"></checkbox>
+                    <!-- <checkbox name="hi" v-model="temp1" disabled></checkbox>
+                    <checkbox name="hi" v-model="temp2"></checkbox> -->
+                    <checkbox-field v-model="temp1">
+                        UTSG
+                    </checkbox-field>
+
+                    <checkbox-field v-model="temp2" disabled>
+                        UTM
+                    </checkbox-field>
+
+                    <checkbox-field v-model="temp3">
+                        UTSC
+                    </checkbox-field>
                 </div>
             </div>
             <div class="Home__navigation">
@@ -53,18 +64,21 @@ import ButtonBase from "@/components/ui/ButtonBase.vue";
 import SettingsConfig from "@/components/ui/SettingsConfig.vue";
 
 import Checkbox from "@/components/ui/forms/base/Checkbox.vue";
+import CheckboxField from "@/components/ui/forms/CheckboxField.vue";
 
 export default {
     components: {
         buttonBase: ButtonBase,
         settingsConfig: SettingsConfig,
-        checkbox: Checkbox
+        checkbox: Checkbox,
+        checkboxField: CheckboxField
     },
     name: 'home',
     data() {
         return {
             temp1: true,
-            temp2: false
+            temp2: true,
+            temp3: false
         }
     }
 }
