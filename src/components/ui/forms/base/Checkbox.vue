@@ -83,9 +83,6 @@ export default {
         display: inline-block;
         position: relative;
 
-        height: $size;
-        width: $size;
-
         cursor: pointer;
 
         & .Checkbox__input {
@@ -130,6 +127,11 @@ export default {
                 transition: opacity $speed, width $speed, height $speed, 
                     top $speed, left $speed;
             }
+        }
+
+        & .Checkbox__pseudo-checkbox {
+            height: $size;
+            width: $size;
         }
 
         & .Checkbox__content {
