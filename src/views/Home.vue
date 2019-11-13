@@ -33,7 +33,8 @@
                         UTSC
                     </checkbox-field> -->
 
-                    <campus-search></campus-search>
+                    <campus-search horizontal>
+                    </campus-search>
                 </div>
             </div>
             <div class="Home__navigation">

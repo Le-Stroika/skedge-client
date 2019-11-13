@@ -1,5 +1,5 @@
 <template>
-    <div class="CampusSearch">
+    <div :class="['CampusSearch', horizontal ? 'horizontal' : '']">
         <checkbox-field 
             class="CampusSearch__campus-select"
             :value="select_utsg"
@@ -40,6 +40,12 @@ export default {
             CAMPUS_KEYS: { ...CAMPUS_KEYS }
         }
     },
+    props: {
+        horizontal: {
+            type: Boolean,
+            default: false
+        }
+    },
     computed: {
         ...mapState({
             select_utsg: (state) => state.general.searchCampuses[CAMPUS_KEYS.UTSG],
@@ -62,6 +68,15 @@ export default {
     .CampusSearch {
         & > .CampusSearch__campus-select:not(:last-child) {
             margin-bottom: 0.3rem;
+        }
+
+        &.horizontal {
+            display: flex;
+
+            & > .CampusSearch__campus-select:not(:last-child) {
+                margin-right: 2rem;
+                margin-bottom: 0;
+            }
         }
     }
 </style>
