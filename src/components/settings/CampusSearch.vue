@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
     .CampusSearch {
         & > .CampusSearch__campus-select:not(:last-child) {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
     }
 </style>

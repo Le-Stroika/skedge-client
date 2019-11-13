@@ -44,11 +44,18 @@
                 </div>
 
                 <div class="SettingsTooltip__theme-select">
-                    TODO: implement theme selection
+                    <div class="SettingsTooltip__theme-select-title">
+                        Theme
+                    </div>
+                    TODO: implement
                 </div>
 
                 <div class="SettingsTooltip__campus-select">
-                    TODO: implement campus search selection
+                    <div class="SettingsTooltip__campus-select-title">
+                        Search Campuses
+                    </div>
+                    <campus-search>
+                    </campus-search>
                 </div>
 
             </tooltip-base>
@@ -64,12 +71,15 @@ import { TweenLite } from "gsap/all";
 import IconClickable from "@/components/ui/icons/IconClickable.vue";
 import TooltipBase from "@/components/ui/tooltip/TooltipBase.vue";
 
+import CampusSearch from "@/components/settings/CampusSearch.vue";
+
 const ANIM_DURATION = 0.3;
 
 export default {
     components: {
         iconClickable: IconClickable,
-        tooltipBase: TooltipBase
+        tooltipBase: TooltipBase,
+        campusSearch: CampusSearch
     },
     data() {
         return {
@@ -149,12 +159,16 @@ export default {
         // This accomplishes the "margin" effect without blowing up v-tooltip
         padding: 0.3rem 0.5rem 0.3rem 0.5rem;
 
-        max-width: 40rem;
+        max-width: 28rem;
         width: 100vw;
 
         & .SettingsTooltip__container {
+
             display: flex;
             flex-direction: column;
+
+            padding: 1rem;
+            padding-bottom: 1.5rem;
 
             & .SettingsTooltip__header {
                 display: flex;
@@ -172,10 +186,20 @@ export default {
 
             & .SettingsTooltip__theme-select {
                 color: color-link("global", "text_color", "secondary");
+
+                & .SettingsTooltip__theme-select-title {
+                    margin-bottom: 0.5rem;
+                    font-weight: 500;
+                }
             }
 
             & .SettingsTooltip__campus-select {
                 color: color-link("global", "text_color", "secondary");
+
+                & .SettingsTooltip__campus-select-title {
+                    margin-bottom: 0.5rem;
+                    font-weight: 500;
+                }
             }
 
             & > *:not(:last-child) {
