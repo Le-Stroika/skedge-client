@@ -5,14 +5,13 @@
     >
         <checkbox 
             class="CheckboxField__checkbox"
+            display-content
             :disabled="disabled"
             :value="value"
             @input="updateValue"
         >
-        </checkbox>
-        <div class="CheckboxField__content">
             <slot></slot>
-        </div>
+        </checkbox>
     </label>
 </template>
 
@@ -64,21 +63,6 @@ export default {
             cursor: pointer;
 
             transition: color 0.2s;
-        }
-
-        &:hover {
-            // NOTE: this is really hacky as it is essentially applying the internal hover styles
-            // of the Checkbox component when the wrapper label is hovered over
-            // This should be fixed at some point -- TODO: fix
-            & .CheckboxField__checkbox {
-                & /deep/ .Checkbox__pseudo-checkbox {
-                    background-color: color-link("Checkbox", "background_color", "secondary");
-                }
-
-                &:checked /deep/ .Checkbox__input:checked + .Checkbox__pseudo-checkbox {
-                    background-color: color-link("Checkbox", "selected_color", "secondary");
-                }
-            }
         }
 
         &.disabled {

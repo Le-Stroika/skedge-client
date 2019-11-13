@@ -16,6 +16,14 @@
             :style="[checkboxStyle]"
         >
         </span>
+        <div 
+            v-if="displayContent"
+            :class="['Checkbox__content', contentClass]"
+            :id="[contentId]"
+            :style="[contentStyle]"
+        >
+            <slot></slot>
+        </div>
     </label>
 </template>
 
@@ -23,6 +31,10 @@
 export default {
     props: {
         disabled: {
+            type: Boolean,
+            default: false
+        },
+        displayContent: {
             type: Boolean,
             default: false
         },
@@ -36,6 +48,18 @@ export default {
             default: null
         },
         checkboxStyle: {
+            type: Object,
+            default: null
+        },
+        contentClass: {
+            type: String,
+            default: null
+        },
+        contentId: {
+            type: String,
+            default: null
+        },
+        contentStyle: {
             type: Object,
             default: null
         },
@@ -62,6 +86,8 @@ export default {
         height: $size;
         width: $size;
 
+        cursor: pointer;
+
         & .Checkbox__input {
             position: absolute;
             opacity: 0;
@@ -82,13 +108,7 @@ export default {
 
             background-color: color-link("Checkbox", "background_color", "primary");
 
-            cursor: pointer;
-
             transition: background-color $speed, box-shadow $speed;
-
-            // &:hover {
-            //     background-color: color-link("Checkbox", "background_color", "secondary");
-            // }
 
             &::after {
                 content: '';
@@ -110,6 +130,10 @@ export default {
                 transition: opacity $speed, width $speed, height $speed, 
                     top $speed, left $speed;
             }
+        }
+
+        & .Checkbox__content {
+            margin-left: calc(#{$size} + 0.5rem);
         }
 
         &:hover {
