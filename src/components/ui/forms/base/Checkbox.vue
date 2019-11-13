@@ -80,10 +80,12 @@ export default {
     $speed: 0.2s;
 
     .Checkbox {
-        display: inline-block;
+        display: flex;
         position: relative;
 
         cursor: pointer;
+
+        min-height: $size;
 
         & .Checkbox__input {
             position: absolute;
@@ -135,6 +137,8 @@ export default {
         }
 
         & .Checkbox__content {
+            align-self: center;
+
             margin-left: calc(#{$size} + 0.5rem);
         }
 

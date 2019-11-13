@@ -1,5 +1,5 @@
 <template>
-    <label 
+    <div 
         :class="['CheckboxField', (disabled) ? 'disabled' : '']"
         @click.prevent="onClick"
     >
@@ -12,7 +12,7 @@
         >
             <slot></slot>
         </checkbox>
-    </label>
+    </div>
 </template>
 
 <script>
