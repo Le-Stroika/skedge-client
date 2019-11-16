@@ -2,6 +2,8 @@
     <select-field
         :options="themesList"
         :value="currTheme"
+        :clearable="false"
+        :searchable="false"
         @input="onThemeChange"
     ></select-field>
 </template>
