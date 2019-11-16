@@ -1,11 +1,12 @@
 const WHITE = "#FFFFFF";
 const BLACK = "#000000";
 
-const GREY_1 = "#2E2E2E";
-const GREY_2 = "#414141";
-const GREY_3 = "#3C3C3C";
+const GREY_1 = "#F0F0F0";
+const GREY_2 = "#D9D9D9";
+const GREY_3 = "#B7B7B7";
 const GREY_4 = "#616161";
 const GREY_5 = "#D3D3D3";
+const GREY_6 = "#252525";
 
 const BLUE_MAIN_1 = "#3D4364";
 const BLUE_MAIN_2 = "#434C79";
@@ -19,7 +20,7 @@ const BLUE_ALT_3 = "#5485BD";
 const BLUE_GREY_1 = "#55596C";
 
 export default {
-    name: "dark",
+    name: "light",
     theme: {
         global: {
             background_color: {
@@ -28,12 +29,12 @@ export default {
                 tertiary: GREY_4,
             },
             text_color: {
-                primary: WHITE,
-                secondary: GREY_5
+                primary: BLACK,
+                secondary: GREY_6
             },
             text_color_inverted: {
-                primary: BLACK,
-                secondary: GREY_3
+                primary: WHITE,
+                secondary: GREY_4
             },
             accent_color: {
                 primary: BLUE_MAIN_2,
@@ -48,6 +49,12 @@ export default {
             disabled_color: {
                 primary: BLUE_GREY_1,
                 secondary: BLUE_ALT_2
+            }
+        },
+        ButtonBase: {
+            text_color: {
+                primary: WHITE,
+                secondary: GREY_2
             }
         },
         Checkbox: {
@@ -69,13 +76,8 @@ export default {
             }
         },
         SelectField: {
-            background_color: {
-                primary: GREY_4,
-                secondary: GREY_4,
-                tertiary: GREY_2
-            },
             selected_color: {
-                primary: BLUE_ALT_2
+                primary: BLUE_MAIN_4
             }
         }
     }

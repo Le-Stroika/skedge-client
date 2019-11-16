@@ -72,6 +72,8 @@ export default {
 
         &.horizontal {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
 
             & > .CampusSearch__campus-select:not(:last-child) {
                 margin-right: 2rem;

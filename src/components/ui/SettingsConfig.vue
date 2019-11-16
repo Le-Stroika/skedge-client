@@ -47,7 +47,7 @@
                     <div class="SettingsTooltip__theme-select-title">
                         Theme
                     </div>
-                    TODO: implement
+                    <theme-select></theme-select>
                 </div>
 
                 <div class="SettingsTooltip__campus-select">
@@ -71,19 +71,23 @@ import { TweenLite } from "gsap/all";
 import IconClickable from "@/components/ui/icons/IconClickable.vue";
 import TooltipBase from "@/components/ui/tooltip/TooltipBase.vue";
 
+import ThemeSelect from "@/components/settings/ThemeSelect.vue";
 import CampusSearch from "@/components/settings/CampusSearch.vue";
 
 const ANIM_DURATION = 0.3;
+
+const INIT_OPEN = false;
 
 export default {
     components: {
         iconClickable: IconClickable,
         tooltipBase: TooltipBase,
-        campusSearch: CampusSearch
+        campusSearch: CampusSearch,
+        themeSelect: ThemeSelect
     },
     data() {
         return {
-            open: false,
+            open: INIT_OPEN
         }
     },
     props: {

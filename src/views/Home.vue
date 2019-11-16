@@ -18,21 +18,6 @@
                     Select Campuses
                 </div>
                 <div class="Home__campus-select-options">
-                    <!-- TODO: add campus options -->
-                    <!-- <checkbox name="hi" v-model="temp1" disabled></checkbox>
-                    <checkbox name="hi" v-model="temp2"></checkbox> -->
-                    <!-- <checkbox-field v-model="temp1">
-                        UTSG
-                    </checkbox-field>
-
-                    <checkbox-field v-model="temp2" disabled>
-                        UTM
-                    </checkbox-field>
-
-                    <checkbox-field v-model="temp3">
-                        UTSC
-                    </checkbox-field> -->
-
                     <campus-search horizontal>
                     </campus-search>
                 </div>
@@ -67,17 +52,11 @@ import ButtonBase from "@/components/ui/ButtonBase.vue";
 import SettingsConfig from "@/components/ui/SettingsConfig.vue";
 import CampusSearch from "@/components/settings/CampusSearch.vue";
 
-import Checkbox from "@/components/ui/forms/base/Checkbox.vue";
-import CheckboxField from "@/components/ui/forms/CheckboxField.vue";
-
 export default {
     components: {
         buttonBase: ButtonBase,
         settingsConfig: SettingsConfig,
-        campusSearch: CampusSearch,
-
-        checkbox: Checkbox,
-        checkboxField: CheckboxField
+        campusSearch: CampusSearch
     },
     name: 'home',
     data() {

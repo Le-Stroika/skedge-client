@@ -1,5 +1,3 @@
-// TODO: design the theming schema
-
 export const schema = {
     global: {
         $mixins: 'base_section'
@@ -22,6 +20,9 @@ export const schema = {
         $inherits: 'global'
     },
     Checkbox: {
+        $inherits: 'global'
+    },
+    SelectField: {
         $inherits: 'global'
     }
 };

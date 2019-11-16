@@ -26,13 +26,10 @@ import { mapActions, mapGetters } from "vuex";
 import { CSSPlugin, AttrPlugin } from "gsap/all";
 
 // Themes
-import DarkTheme from "./theme/themes/dark";
+import themes from "./theme/themes";
 
 import ThemeProvider from "@/components/wrappers/ThemeProvider.vue";
-
-// TODO: move out to separate constants file
-const DEFAULT_NAMESPACE = "default";
-const DEFAULT_THEME = "dark";
+import { DEFAULT_NAMESPACE, DEFAULT_THEME } from "./constants/generalConstants";
 
 export default {
     components: {
@@ -58,11 +55,13 @@ export default {
             addNamespace: actionTypes.ADD_NAMESPACE,
         }),
         instantiateThemes() {
-            // Add dark theme
-            this.addTheme({
-                name: DarkTheme.name,
-                theme: DarkTheme.theme,
-                override: true
+            // Add all the themes
+            Object.values(themes).forEach((themeData) => {
+                this.addTheme({
+                    name: themeData.name,
+                    theme: themeData.theme,
+                    override: true
+                });
             });
         },
         instantiateNamespaces() {
@@ -78,9 +77,6 @@ export default {
 </script>
 
 <style lang="scss">
-    // Import global styles and functions
-    // @import "@/styles/global.scss"; 
-
     #App {
         height: 100%;
 
