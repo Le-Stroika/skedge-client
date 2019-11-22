@@ -76,6 +76,12 @@ addParameters({
         states: [
             ..._allStates(allThemeGens, DEFAULT_THEME)
         ]
+    },
+    darkMode: {
+        // Override the default dark theme
+        dark: { ...themes.dark, appBg: 'black' },
+        // Override the default light theme
+        light: { ...themes.normal, appBg: 'red' }
     }
 });
 
