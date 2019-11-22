@@ -32,6 +32,10 @@ function _themeGenToString(themeGeneration) {
         conversionStr += `${key}: ${value}; `;
     });
 
+    // Set the root background and text color to link to the theme
+    conversionStr += `background-color: rgba(var(--global__background_color__primary),1); `;
+    conversionStr += `color: rgba(var(--global__text_color__primary),1); `;
+
     return conversionStr;
 }
 
