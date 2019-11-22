@@ -97,7 +97,7 @@ export default {
         & > a {
             cursor: pointer;
             display: inline-block;
-            margin: 1rem 1.5rem;
+            padding: 1rem 3rem;
             
             text-decoration: none;
             color: color-link("ButtonBase", "text_color", "primary");
