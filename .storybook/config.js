@@ -1,6 +1,10 @@
 import { configure, addDecorator, addParameters } from '@storybook/vue';
 import { withRootAttribute } from "storybook-addon-root-attribute";
 
+// Global sass imports
+import "../src/styles/global.scss"; // Client global sass
+import "../stories/global-story-styles.scss"; // Storybook-specific global sass
+
 // ------------------------------------
 // --- Setup Global Theme Injection ---
 // ------------------------------------
