@@ -1,29 +1,29 @@
 export const schema = {
-    global: {
+    GLOBAL: {
         $mixins: 'base_section'
     },
     // Page views
     HomeView: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     },
     FallWinterView: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     },
     SummerView: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     },
     // Components
     ButtonBase: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     },
     SettingsCog: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     },
     Checkbox: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     },
     SelectField: {
-        $inherits: 'global'
+        $inherits: 'GLOBAL'
     }
 };
 

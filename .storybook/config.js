@@ -23,7 +23,11 @@ function _generateAllThemes(schema, mixins, themes) {
     const generatedThemes = {};
 
     Object.values(themes).forEach(({ name, theme }) => {
-        const currGenerated = Themer.generate(theme, schema, mixins, {}, { PREFIX: "--" });
+        const generateOptions = {
+            PREFIX: "--",
+            CONDENSE_KEYS: true
+        };
+        const currGenerated = Themer.generate(theme, schema, mixins, {}, generateOptions);
         generatedThemes[name] = currGenerated;
     });
 

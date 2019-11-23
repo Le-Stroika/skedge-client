@@ -75,7 +75,11 @@ const mutations = {
         }
 
         // Generate the theme
-        const generatedTheme = Themer.generate(theme, schema, mixins, {}, { PREFIX: "--" });
+        const generateOptions = {
+            PREFIX: "--",
+            CONDENSE_KEYS: true
+        };
+        const generatedTheme = Themer.generate(theme, schema, mixins, {}, generateOptions);
 
         // Add the theme
         Vue.set(state.themes, name, { name, properties: generatedTheme});
