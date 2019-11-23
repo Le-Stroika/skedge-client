@@ -48,6 +48,15 @@ export default {
             disabled_color: {
                 primary: BLUE_GREY_1,
                 secondary: BLUE_ALT_2
+            },
+            scrollbar: {
+                main_color: {
+                    primary: GREY_3,
+                    secondary: GREY_4
+                },
+                hover_color: {
+                    primary: BLUE_GREY_1
+                }
             }
         },
         Checkbox: {

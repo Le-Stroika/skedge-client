@@ -1,0 +1,20 @@
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+	width: 5px; // Vertical scrollbar
+	height: 5px; // Horizontal scrollbar
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: color-link("global", "scrollbar", "main_color", "primary");
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: color-link("global", "scrollbar", "main_color", "secondary");
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: color-link("global", "scrollbar", "hover_color", "primary");
+}

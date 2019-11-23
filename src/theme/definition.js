@@ -49,6 +49,15 @@ export const mixins = {
         },
         disabled_color: {
             $mixins: 'disabled'
+        },
+        // Scrollbar
+        scrollbar: {
+            main_color: {
+                $mixins: ['primary_modifier', 'secondary_modifier']
+            },
+            hover_color: {
+                $mixins: ['primary_modifier']
+            }
         }
     },
     // ------------------
