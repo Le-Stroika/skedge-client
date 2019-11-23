@@ -38,7 +38,7 @@ export default {
     .IconClickable {
         $duration: 0.15s;
 
-        color: color-link("global", "text_color", "primary");
+        color: color-link("GLOBAL", "text_color", "primary");
         cursor: pointer;
 
         transition: color $duration;
@@ -48,16 +48,16 @@ export default {
         }
 
         &:hover {
-            color: color-link("global", "text_color", "secondary");
+            color: color-link("GLOBAL", "text_color", "secondary");
         }
 
         &.disabled {
             cursor: inherit;
 
-            color: color-link("global", "disabled_color", "primary");
+            color: color-link("GLOBAL", "disabled_color", "primary");
 
             &:hover {
-                color: color-link("global", "disabled_color", "primary");
+                color: color-link("GLOBAL", "disabled_color", "primary");
             }
         }
     }

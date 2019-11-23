@@ -54,7 +54,7 @@ export default {
         align-items: center;
 
         & .CheckboxField__content {
-            color: color-link("global", "text_color", "primary");
+            color: color-link("GLOBAL", "text_color", "primary");
 
             margin-left: 0.5rem;
             font-size: 2.3rem;
@@ -69,7 +69,7 @@ export default {
             pointer-events: none;
 
             & .CheckboxField__content {
-                color: color-link("global", "text_color", "secondary");
+                color: color-link("GLOBAL", "text_color", "secondary");
 
                 cursor: initial;
             }

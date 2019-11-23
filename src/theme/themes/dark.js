@@ -21,7 +21,7 @@ const BLUE_GREY_1 = "#55596C";
 export default {
     name: "dark",
     theme: {
-        global: {
+        GLOBAL: {
             background_color: {
                 primary: GREY_1,
                 secondary: GREY_2,

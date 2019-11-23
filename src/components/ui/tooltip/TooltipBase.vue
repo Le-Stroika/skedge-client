@@ -40,7 +40,7 @@ export default {
             padding: 0.7rem;
             border-radius: 0.4rem;
 
-            background-color: color-link("global", "background_color", "secondary");
+            background-color: color-link("GLOBAL", "background_color", "secondary");
 
             box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.2);
         }

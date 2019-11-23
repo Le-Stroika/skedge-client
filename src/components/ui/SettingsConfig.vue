@@ -189,7 +189,7 @@ export default {
             }
 
             & .SettingsTooltip__theme-select {
-                color: color-link("global", "text_color", "secondary");
+                color: color-link("GLOBAL", "text_color", "secondary");
 
                 & .SettingsTooltip__theme-select-title {
                     margin-bottom: 0.5rem;
@@ -198,7 +198,7 @@ export default {
             }
 
             & .SettingsTooltip__campus-select {
-                color: color-link("global", "text_color", "secondary");
+                color: color-link("GLOBAL", "text_color", "secondary");
 
                 & .SettingsTooltip__campus-select-title {
                     margin-bottom: 0.5rem;
