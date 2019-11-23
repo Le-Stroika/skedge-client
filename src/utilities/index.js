@@ -60,6 +60,16 @@ export const removeCSSProperty = (i_sPropertyName, i_el = null) => {
 };
 
 /**
+ * Returns if the given string is a valid CSS general value
+ * Ex: 'auto', 'initial', 'inherit'
+ * 
+ * @param {String} i_sVal The CSS value
+ */
+export function isCSSGeneralValue(i_sVal) {
+    return ["auto", "initial", "inherit"].includes(i_sVal);
+}
+
+/**
  * Returns if the given string is a valid CSS length.
  * Ex: '5rem', '20%', '15px, etc
  * 
@@ -67,7 +77,7 @@ export const removeCSSProperty = (i_sPropertyName, i_el = null) => {
  */
 export function isCSSLength(i_sLength) {
     const rCSSLengthRegex = /^(\d*?.?\d+)(rem|em|px|cm|mm|in|pt|pc|ch|vw|vh|vmin|vmax|%)$/g;
-    return rCSSLengthRegex.test(i_sLength);
+    return rCSSLengthRegex.test(i_sLength) || isCSSGeneralValue(i_sLength);
 }
 
 /**
@@ -78,7 +88,7 @@ export function isCSSLength(i_sLength) {
  */
 export function isCSSFrUnit(i_sLength) {
     const rCSSFrUnitRegex = /^(\d*?.?\d+)(fr)$/g;
-    return rCSSFrUnitRegex.test(i_sLength);
+    return rCSSFrUnitRegex.test(i_sLength) || isCSSGeneralValue(i_sLength);
 }
 
 /**
@@ -89,7 +99,7 @@ export function isCSSFrUnit(i_sLength) {
  */
 export function isCSSRotation(i_sRotation) {
     const rCSSRotationRegex = /^(\d*?.?\d+)(deg|rad|grad|turn)$/g;
-    return rCSSRotationRegex.test(i_sRotation);
+    return rCSSRotationRegex.test(i_sRotation) || isCSSGeneralValue(i_sRotation);
 }
 
 /**
@@ -115,4 +125,20 @@ export function getIconSizeCSSStyles(i_sSize, i_sFontSizeModifier = '0rem') {
         minWidth: i_sSize,
         fontSize: `calc(${i_sSize} + ${i_sFontSizeModifier}) !important`
     }
+}
+
+// Taken from: https://davidwalsh.name/javascript-debounce-function
+export function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
 }
