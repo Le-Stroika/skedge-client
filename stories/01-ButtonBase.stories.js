@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 
-import ButtonBase from "../src/components/ui/ButtonBase.vue";
+import ButtonBase from "@/components/ui/ButtonBase.vue";
 
 export default {
     title: 'ButtonBase'
