@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import store from "../src/store/store";
+
 import { configure, addDecorator, addParameters } from '@storybook/vue';
 import { withRootAttribute } from "storybook-addon-root-attribute";
 
@@ -82,6 +85,15 @@ addParameters({
         ]
     }
 });
+
+// ------------------------------
+// --- Initialize Vue Plugins ---
+// ------------------------------
+
+
+// ----------------------------
+// --- Load Storybook Files ---
+// ----------------------------
 
 // automatically import all files ending in *.stories.js
 configure(require.context('../stories', true, /\.stories\.js$/), module);

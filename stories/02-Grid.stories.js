@@ -7,14 +7,17 @@ export default {
     title: "Grid"
 };
 
-export const temp = () => ({
+export const main = () => ({
     components: {
         GridBase,
         GridItem
     },
     template: `
-        <grid-base>
-        
+        <grid-base
+            :cells-wide="5"
+            :cells-high="5"
+        >
+
         </grid-base>
     `
 });

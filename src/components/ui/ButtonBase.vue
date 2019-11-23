@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { CSSLength } from "../../customValidators";
+import { CSSLength } from "../../validators";
 
 export default {
     props: {
