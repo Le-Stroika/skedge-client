@@ -71,6 +71,17 @@ export function isCSSLength(i_sLength) {
 }
 
 /**
+ * Returns if the gien string is a valid CSS fractional length.
+ * Ex: '1fr', '2fr', etc
+ * 
+ * @param {String} i_sLength The CSS length.
+ */
+export function isCSSFrUnit(i_sLength) {
+    const rCSSFrUnitRegex = /^(\d*?.?\d+)(fr)$/g;
+    return rCSSFrUnitRegex.test(i_sLength);
+}
+
+/**
  * Returns if the given string is a valid CSS rotation.
  * Ex: '45deg', '3.14rad', '400grad', '1turn', etc
  * 
