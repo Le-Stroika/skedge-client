@@ -18,3 +18,8 @@
 ::-webkit-scrollbar-thumb:hover {
     background: color-link("GLOBAL", "scrollbar", "hover_color", "primary");
 }
+
+/* Corner color */
+::-webkit-scrollbar-corner {
+    background: color-link("GLOBAL", "scrollbar", "main_color", "primary");
+}
