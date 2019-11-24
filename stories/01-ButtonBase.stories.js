@@ -6,7 +6,7 @@ export default {
     title: 'ButtonBase'
 };
 
-export const test = () => ({
+export const main = () => ({
     components: { 
         ButtonBase 
     },
