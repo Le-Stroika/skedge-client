@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { PositiveNumber, CSSGridLength, CSSLength } from "../../validators";
+import { PositiveNumber, CSSGridLength, CSSGridFunc, CSSLength } from "../../validators";
 import * as Utilities from "../../utilities";
 
 const SCROLLBAR_WIDTH = "5px";
@@ -65,12 +65,12 @@ export default {
         cellWidth: {
             type: String,
             default: "1fr",
-            validator: CSSGridLength
+            validator: (val) => CSSGridLength(val) || CSSGridFunc(val)
         },
         cellHeight: {
             type: String,
             default: "15rem",
-            validator: CSSGridLength
+            validator: (val) => CSSGridLength(val) || CSSGridFunc(val)
         },
         // Legend props
         enableHorizontalLegend: {
@@ -94,6 +94,19 @@ export default {
         lockHorizontalLegend: {
             type: Boolean,
             default: false
+        },
+        // Grid cell prefixes
+        cellPrefix: {
+            type: String,
+            default: "cell"
+        },
+        horizontalLegendPrefix: {
+            type: String,
+            default: "horiz-legend"
+        },
+        verticalLegendPrefix: {
+            type: String,
+            default: "vert-legend"
         },
         // Internal class props
         gridClass: {
@@ -144,15 +157,15 @@ export default {
     computed: {
         gridComputedStyles() {
             return {
-                "grid-template-columns": this.templateColumns(),
-                "grid-template-rows": this.templateRows()
+                "grid-template-columns": this.templateColumns(this.cellPrefix),
+                "grid-template-rows": this.templateRows(this.cellPrefix)
             }
         },
         horizontalLegendComputedStyles() {
             return {
                 "height": this.horizontalLegendHeight,
                 "width": `calc(${this.horizLegendWidth} + ${this.horizLengendLeftPadding})`,
-                "grid-template-columns": this.templateColumns("horiz-legend"),
+                "grid-template-columns": this.templateColumns(this.horizontalLegendPrefix),
                 "grid-template-rows": "1fr",
                 "margin-right": this.horizLengendRightMargin,
                 "padding-left": this.horizLengendLeftPadding,
@@ -162,11 +175,11 @@ export default {
             return {
                 "width": this.verticalLegendWidth,
                 "grid-template-columns": "1fr",
-                "grid-template-rows": this.templateRows("vert-legend")
+                "grid-template-rows": this.templateRows(this.verticalLegendPrefix)
             }
         },
         templateColumns() {
-            return (cellPrefix = "cell") => {
+            return (cellPrefix) => {
                 let templateStr = "[";
 
                 for (let cellNum = 1; cellNum <= this.cellsWide; cellNum++) {
@@ -180,7 +193,7 @@ export default {
             }
         },
         templateRows() {
-            return (cellPrefix = "cell") => {
+            return (cellPrefix) => {
                 let templateStr = "[";
 
                 for (let cellNum = 1; cellNum <= this.cellsHigh; cellNum++) {

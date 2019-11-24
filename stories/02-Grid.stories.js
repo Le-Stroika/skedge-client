@@ -8,11 +8,15 @@ export default {
 };
 
 export const main = () => ({
+    components: {
+        GridBase,
+        GridItem
+    },
     template: `
         <grid-base
             :cells-wide="cellsWide"
             :cells-high="cellsHigh"
-            cell-width="20rem"
+            cell-width="minmax(15rem, 1fr)"
             cell-height="15rem"
             :enable-horizontal-legend="true"
             :enable-vertical-legend="true"
@@ -78,10 +82,6 @@ export const main = () => ({
             </template>
         </grid-base>
     `,
-    components: {
-        GridBase,
-        GridItem
-    },
     data() {
         return {
             cellsWide: 5,
