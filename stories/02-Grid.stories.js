@@ -12,7 +12,7 @@ export const main = () => ({
         <grid-base
             :cells-wide="cellsWide"
             :cells-high="cellsHigh"
-            cell-width="1fr"
+            cell-width="20rem"
             cell-height="15rem"
             :enable-horizontal-legend="true"
             :enable-vertical-legend="true"

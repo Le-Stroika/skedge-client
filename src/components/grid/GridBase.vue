@@ -10,6 +10,7 @@
             :class="['GridBase__horizontal-legend', horizontalLegendClass]"
             :style="[horizontalLegendComputedStyles, horizontalLegendStyle]"
             :id="[horizontalLegendId]"
+            ref="horizLegendEl"
         >
             <slot name="horizontal-legend"></slot>
         </div>
@@ -135,8 +136,9 @@ export default {
     data() {
         return {
             onResizeDebounced: Utilities.debounce(this.onResize, DEBOUNC_RATE),
-            horizLengendRightPad: "0",
-            horizLegendLeftPad: "0",
+            horizLegendWidth: "auto",
+            horizLengendRightMargin: "0px",
+            horizLengendLeftPadding: "0px",
         }
     },
     computed: {
@@ -149,11 +151,11 @@ export default {
         horizontalLegendComputedStyles() {
             return {
                 "height": this.horizontalLegendHeight,
-                // "padding-left": (this.enableVerticalLegend) ? this.verticalLegendWidth : "0",
+                "width": `calc(${this.horizLegendWidth} + ${this.horizLengendLeftPadding})`,
                 "grid-template-columns": this.templateColumns("horiz-legend"),
                 "grid-template-rows": "1fr",
-                "padding-right": this.horizLengendRightPad,
-                "padding-left": this.horizLegendLeftPad,
+                "margin-right": this.horizLengendRightMargin,
+                "padding-left": this.horizLengendLeftPadding,
             }
         },
         verticalLegendComputedStyles() {
@@ -193,34 +195,46 @@ export default {
         }
     },
     methods: {
-        computeHorizLegendPaddings() {
+        computeHorizLegendStylings() {
             if (!this.enableHorizontalLegend) return;
 
-            // Compute padding-left amount
+            const containerEl = this.$refs.containerEl;
+            const gridEl = this.$refs.gridEl;
+            const vertLegendEl = this.$refs.vertLegendEl;
 
-            if (this.enableVerticalLegend) {
-                const vertLegendEl = this.$refs.vertLegendEl;
-                this.horizLegendLeftPad = `${vertLegendEl.offsetWidth}px`;
-            } else {
-                this.horizLegendLeftPad = "0";
-            }
+            
+            // --- Compute horizontal legend width ---
+
+            this.horizLegendWidth = (this.lockHorizontalLegend) ? "auto" : `${gridEl.scrollWidth}px`;
+
+
+            // --- Compute padding-left amount ---
+
+            this.horizLengendLeftPadding = (this.enableVerticalLegend) ? `${vertLegendEl.offsetWidth}px` : "0";
 
             if (!this.lockHorizontalLegend) return;
 
-            // Compute padding right ammount
-        
-            const containerEl = this.$refs.containerEl;
-            const gridEl = this.$refs.gridEl;
 
-            // Grid is scrolling
-            const gridScrolling = gridEl.scrollHeight > containerEl.offsetHeight;
+            // --- Compute padding-right ammount ---
 
-            // Add padding to the horizontal legend container to account for the scrollbar
+            // Grid is vertically scrollable
+            const gridVertScrollable = gridEl.scrollHeight > containerEl.offsetHeight;
+
+            // Add a right margin to the horizontal legend container to account for the scrollbar
             // (this makes sure the grids line up properly)
-            this.horizLengendRightPad = (gridScrolling) ? SCROLLBAR_WIDTH : "0";
+            this.horizLengendRightMargin = (gridVertScrollable) ? SCROLLBAR_WIDTH : "0";
         },
         onResize() {
-            this.computeHorizLegendPaddings();
+            this.computeHorizLegendStylings();
+        },
+        onGridScroll() {
+            if (!this.enableHorizontalLegend) return;
+
+            const containerEl = this.$refs.containerEl;
+            const horizLegendEl = this.$refs.horizLegendEl;
+
+            // Sync the horizontal legend scroll position with the grid container's
+            horizLegendEl.scrollLeft = containerEl.scrollLeft;
         },
         // NOTE: intermediate functions, do not use
         __onResize__() {
@@ -228,16 +242,24 @@ export default {
         }
     },
     mounted() {
-        // Setup window resize listener
+        // Setup html event listeners
         this.$nextTick(() => {
+            // Setup window resize event
             window.addEventListener('resize', this.__onResize__);
             // Fire resize event on load (for initialization purposes)
             this.__onResize__();
+
+            // Setup scroll event on the grid container
+            const containerEl = this.$refs.containerEl;
+            containerEl.addEventListener('scroll', this.onGridScroll);
         });
     },
     beforeDestroy() {
-        // Remove window resize listener
+        // Remove event listeners
         window.removeEventListener('resize', this.__onResize__);
+
+        const containerEl = this.$refs.containerEl;
+        containerEl.removeEventListener('scroll', this.onGridScroll);
     }
 }
 </script>
@@ -259,6 +281,19 @@ export default {
             flex-shrink: 0;
 
             display: grid;
+
+            overflow: auto;
+
+            // Hide the scrollbar but keep functionality
+            // TODO: this trick doesn't work for Firefox
+            // Crhome, Safari and Opera
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            // IE and Edge
+            -ms-overflow-style: none;
+            // Older Firefox versions
+            overflow: -moz-scrollbars-none;
         }
 
         & .GridBase__container {
@@ -289,6 +324,7 @@ export default {
             }   
         }
 
+        // Lock specific overflow stylings
         &.lock-horizontal-legend {
             overflow: hidden;
 
