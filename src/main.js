@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import VTooltip from 'v-tooltip';
 import VSelect from 'vue-select';
+import SimpleBar from 'simplebar-vue';
 import { MdIcon } from 'vue-material/dist/components';
 
 // Global stylesheet imports
-import 'vue-material/dist/vue-material.min.css';
-// import 'vue-select/dist/vue-select.css';
-import "vue-select/src/scss/vue-select.scss";
 import '@/styles/global.scss';
+import 'vue-material/dist/vue-material.min.css';
+import "vue-select/src/scss/vue-select.scss";
+import "simplebar/dist/simplebar.min.css";
 
 // App and route imports
 import App from './App.vue';
@@ -26,6 +27,9 @@ Vue.use(VTooltip);
 
 // Vue-Select
 Vue.component('v-select', VSelect);
+
+// Simplebar
+Vue.component('simple-bar', SimpleBar);
 
 new Vue({
     router,
