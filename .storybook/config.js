@@ -1,9 +1,35 @@
 import { configure, addDecorator, addParameters } from '@storybook/vue';
 import { withRootAttribute } from "storybook-addon-root-attribute";
 
+import Vue from 'vue';
+import VTooltip from 'v-tooltip';
+import VSelect from 'vue-select';
+import SimpleBar from 'simplebar-vue';
+import { MdIcon } from 'vue-material/dist/components';
+
 // Global sass imports
 import "../src/styles/global.scss"; // Client global sass
 import "../stories/global-story-styles.scss"; // Storybook-specific global sass
+import 'vue-material/dist/vue-material.min.css';
+import "vue-select/src/scss/vue-select.scss";
+import "simplebar/dist/simplebar.min.css";
+
+// --------------------------------
+// --- Setup library components ---
+// --------------------------------
+
+// Material UI 
+Vue.use(MdIcon);
+
+// V-tooltip
+Vue.use(VTooltip);
+
+// Vue-Select
+Vue.component('v-select', VSelect);
+
+// Simplebar
+Vue.component('simple-bar', SimpleBar);
+
 
 // ------------------------------------
 // --- Setup Global Theme Injection ---
