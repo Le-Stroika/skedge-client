@@ -1,25 +1,26 @@
 <template>
-    <div 
+    <header-lock 
         :class="[
             'GridBase',
             lockHorizontalLegend ? 'lock-horizontal-legend' : null,
         ]"
+        :lock="lockHorizontalLegend"
     >
-        <div
-            v-if="enableHorizontalLegend" 
-            :class="['GridBase__horizontal-legend', horizontalLegendClass]"
-            :style="[horizontalLegendComputedStyles, horizontalLegendStyle]"
-            :id="[horizontalLegendId]"
-            ref="horizLegendEl"
-        >
-            <slot name="horizontal-legend"></slot>
-        </div>
+        <template #header>
+            <div
+                v-if="enableHorizontalLegend" 
+                :class="['GridBase__horizontal-legend', horizontalLegendClass]"
+                :style="[horizontalLegendComputedStyles, horizontalLegendStyle]"
+                :id="[horizontalLegendId]"
+                ref="horizLegendEl"
+            >
+                <slot name="horizontal-legend"></slot>
+            </div>
+        </template>
 
-        <div 
-            class="GridBase__container"
-            ref="containerEl"
-        >
+        <template #sidebar>
             <div 
+                v-if="enableVerticalLegend"
                 :class="['GridBase__vertical-legend', verticalLegendClass]"
                 :style="[verticalLegendComputedStyles, verticalLegendStyle]"
                 :id="[verticalLegendId]"
@@ -27,30 +28,30 @@
             >
                 <slot name="vertical-legend"></slot>
             </div>
+        </template>
 
-            <div class="GridBase__grid-container">
-                <div 
-                    :class="['GridBase__grid', gridClass]"
-                    :style="[gridComputedStyles, gridStyle]"
-                    :id="[gridId]"
-                    ref="gridEl"
-                >
-                    <!-- Default slot -->
-                    <slot></slot>
-                </div>
+        <template>
+            <div 
+                :class="['GridBase__grid', gridClass]"
+                :style="[gridComputedStyles, gridStyle]"
+                :id="[gridId]"
+                ref="gridEl"
+            >
+                <slot></slot>
             </div>
-        </div>
-    </div>
+        </template>
+    </header-lock>
 </template>
 
 <script>
-import { PositiveNumber, CSSGridLength, CSSGridFunc, CSSLength } from "../../validators";
-import * as Utilities from "../../utilities";
+import HeaderLock from "@/components/utility/HeaderLock.vue";
 
-const SCROLLBAR_WIDTH = "5px";
-const DEBOUNC_RATE = 50;
+import { PositiveNumber, CSSGridLength, CSSGridFunc, CSSLength } from "../../validators";
 
 export default {
+    components: {
+        HeaderLock
+    },
     props: {
         cellsWide: {
             type: Number,
@@ -146,14 +147,6 @@ export default {
             default: null
         }
     },
-    data() {
-        return {
-            onResizeDebounced: Utilities.debounce(this.onResize, DEBOUNC_RATE),
-            horizLegendWidth: "auto",
-            horizLengendRightMargin: "0px",
-            horizLengendLeftPadding: "0px",
-        }
-    },
     computed: {
         gridComputedStyles() {
             return {
@@ -164,11 +157,8 @@ export default {
         horizontalLegendComputedStyles() {
             return {
                 "height": this.horizontalLegendHeight,
-                "width": `calc(${this.horizLegendWidth} + ${this.horizLengendLeftPadding})`,
                 "grid-template-columns": this.templateColumns(this.horizontalLegendPrefix),
-                "grid-template-rows": "1fr",
-                "margin-right": this.horizLengendRightMargin,
-                "padding-left": this.horizLengendLeftPadding,
+                "grid-template-rows": "1fr"
             }
         },
         verticalLegendComputedStyles() {
@@ -206,73 +196,6 @@ export default {
                 return templateStr;
             }
         }
-    },
-    methods: {
-        computeHorizLegendStylings() {
-            if (!this.enableHorizontalLegend) return;
-
-            const containerEl = this.$refs.containerEl;
-            const gridEl = this.$refs.gridEl;
-            const vertLegendEl = this.$refs.vertLegendEl;
-
-            
-            // --- Compute horizontal legend width ---
-
-            this.horizLegendWidth = (this.lockHorizontalLegend) ? "auto" : `${gridEl.scrollWidth}px`;
-
-
-            // --- Compute padding-left amount ---
-
-            this.horizLengendLeftPadding = (this.enableVerticalLegend) ? `${vertLegendEl.offsetWidth}px` : "0";
-
-            if (!this.lockHorizontalLegend) return;
-
-
-            // --- Compute padding-right ammount ---
-
-            // Grid is vertically scrollable
-            const gridVertScrollable = gridEl.scrollHeight > containerEl.offsetHeight;
-
-            // Add a right margin to the horizontal legend container to account for the scrollbar
-            // (this makes sure the grids line up properly)
-            this.horizLengendRightMargin = (gridVertScrollable) ? SCROLLBAR_WIDTH : "0";
-        },
-        onResize() {
-            this.computeHorizLegendStylings();
-        },
-        onGridScroll() {
-            if (!this.enableHorizontalLegend) return;
-
-            const containerEl = this.$refs.containerEl;
-            const horizLegendEl = this.$refs.horizLegendEl;
-
-            // Sync the horizontal legend scroll position with the grid container's
-            horizLegendEl.scrollLeft = containerEl.scrollLeft;
-        },
-        // NOTE: intermediate functions, do not use
-        __onResize__() {
-            this.onResizeDebounced();
-        }
-    },
-    mounted() {
-        // Setup html event listeners
-        this.$nextTick(() => {
-            // Setup window resize event
-            window.addEventListener('resize', this.__onResize__);
-            // Fire resize event on load (for initialization purposes)
-            this.__onResize__();
-
-            // Setup scroll event on the grid container
-            const containerEl = this.$refs.containerEl;
-            containerEl.addEventListener('scroll', this.onGridScroll);
-        });
-    },
-    beforeDestroy() {
-        // Remove event listeners
-        window.removeEventListener('resize', this.__onResize__);
-
-        const containerEl = this.$refs.containerEl;
-        containerEl.removeEventListener('scroll', this.onGridScroll);
     }
 }
 </script>
@@ -284,70 +207,27 @@ export default {
 
         border-radius: 0.2rem;
 
-        overflow: auto;
-
         display: flex;
         flex-direction: column;
 
         & .GridBase__horizontal-legend {
+            display: grid;
+
+            width: 100%;
+            overflow: visible;
+        }
+
+        & .GridBase__vertical-legend {
             flex-grow: 0;
             flex-shrink: 0;
 
             display: grid;
-
-            overflow: auto;
-
-            // Hide the scrollbar but keep functionality
-            // TODO: this trick doesn't work for Firefox
-            // Crhome, Safari and Opera
-            &::-webkit-scrollbar {
-                display: none;
-            }
-            // IE and Edge
-            -ms-overflow-style: none;
-            // Older Firefox versions
-            overflow: -moz-scrollbars-none;
         }
 
-        & .GridBase__container {
-            flex-grow: 1;
-            flex-shrink: 1;
+        & .GridBase__grid {
+            display: grid;
 
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-
-            & .GridBase__vertical-legend {
-                flex-grow: 0;
-                flex-shrink: 0;
-
-                display: grid;
-            }
-
-            & .GridBase__grid-container {
-                flex-grow: 1;
-                flex-shrink: 1;
-
-                & .GridBase__grid {
-                    display: grid;
-
-                    border-radius: 5rem;
-                }
-
-            }   
-        }
-
-        // Lock specific overflow stylings
-        &.lock-horizontal-legend {
-            overflow: hidden;
-
-            & .GridBase__container {
-                overflow: auto;
-            }
-        }
-
-        &:not(.lock-horizontal-legend) {
-            overflow: auto;
+            border-radius: 5rem;
         }
     }
 </style>
