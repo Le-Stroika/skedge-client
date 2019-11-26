@@ -64,7 +64,7 @@ export default {
         return {
             days: [ ...DAYS ],
             times: [ ...TIMES ],
-            cellsPerTime: 2, // The number of cells per very time-slot
+            cellsPerTime: 2, // The number of cells per every time-slot
             cellPrefix: "slot",
             horizontalLegendPrefix: "day",
             verticalLegendPrefix: "time"

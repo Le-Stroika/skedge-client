@@ -1,6 +1,10 @@
 <template>
     <div
-        class="TimetableTime"
+        :class="[
+            'TimetableTime',
+            (this.isTopmost) ? 'topmost' : null,
+            (this.isBottommost) ? 'bottommost' : null
+        ]"
         :style="styles"
     >
         {{ time }}
@@ -29,14 +33,21 @@ export default {
         }
     },
     computed: {
+        timeNum() {
+            return (TIMES.indexOf(this.time) * this.cellsPerTime) + 1;
+        },
+        isTopmost() {
+            return this.timeNum === 1;
+        },
+        isBottommost() {
+            return this.timeNum === TIMES.length;
+        },
         styles() {
             // Compute what cells this current timetable time cell should span
-            const timeNum = (TIMES.indexOf(this.time) * this.cellsPerTime) + 1; 
-
             return { 
                 'grid-column': '1',
-                'grid-row': `${this.cellPrefix}-${timeNum}-start 
-                            / ${this.cellPrefix}-${timeNum + this.cellsPerTime - 1}-end`
+                'grid-row': `${this.cellPrefix}-${this.timeNum}-start 
+                            / ${this.cellPrefix}-${this.timeNum + this.cellsPerTime - 1}-end`
             }
         }
     }

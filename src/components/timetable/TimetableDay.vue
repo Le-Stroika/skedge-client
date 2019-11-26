@@ -1,6 +1,10 @@
 <template>
     <div
-        class="TimetableDay"
+        :class="[
+            'TimetableDay', 
+            (this.isLeftmost) ? 'leftmost' : null,
+            (this.isRightMost) ? 'rightmost' : null
+        ]"
         :style="styles"
     >
         {{ day }}
@@ -24,12 +28,19 @@ export default {
         }
     },
     computed: {
+        dayNum() {
+            return DAYS.indexOf(this.day) + 1;
+        },
+        isLeftmost() {
+            return this.dayNum === 1;
+        },
+        isRightMost() {
+            return this.dayNum === DAYS.length;
+        },
         styles() {
             // Compute what cells this current timetable day cell should span
-            const dayNum = DAYS.indexOf(this.day) + 1;
-
             return { 
-                'grid-column': `${this.cellPrefix}-${dayNum}-start / ${this.cellPrefix}-${dayNum}-end`,
+                'grid-column': `${this.cellPrefix}-${this.dayNum}-start / ${this.cellPrefix}-${this.dayNum}-end`,
                 'grid-row': '1'
             }
         }
