@@ -92,7 +92,7 @@
 <script>
 import * as Utilities from "../../utilities";
 
-const DEBOUNCE_RATE = 50;
+const DEBOUNCE_RATE = 20;
 
 export default {
     data() {
