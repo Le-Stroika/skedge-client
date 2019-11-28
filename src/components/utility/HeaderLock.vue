@@ -142,7 +142,7 @@ export default {
         },
         headerComputedStyles() {
             return {
-                'width': this.headerWidth,
+                'width': `calc(${this.headerWidth} + ${this.headerLeftPadding})`,
                 'padding-left': this.headerLeftPadding
             }
         }
@@ -152,7 +152,7 @@ export default {
             // --- Compute header width ---
             if (this.lock) {
                 const contentEl = this.$refs.contentEl;
-                this.headerWidth = (this.lock) ? "auto" : `${contentEl.scrollWidth}px`;
+                this.headerWidth = `${contentEl.scrollWidth}px`;
             }
 
             // --- Compute padding-left amount ---
