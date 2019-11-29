@@ -7,7 +7,9 @@
         ]"
         :style="styles"
     >
-        {{ time }}
+        <span class="TableTime__time">
+            {{ time }}
+        </span>
     </div>
 </template>
 
@@ -40,7 +42,7 @@ export default {
             return this.timeNum === 1;
         },
         isBottommost() {
-            return this.timeNum === TIMES.length;
+            return this.timeNum === TIMES.length * this.cellsPerTime - 1;
         },
         styles() {
             // Compute what cells this current timetable time cell should span
@@ -55,5 +57,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "./timetable-common.scss";
 
+    .TimetableTime {
+        border-bottom: $line-style;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 1rem;
+
+        &.bottommost {
+            border-bottom: none;
+        }
+
+        & .TimetableTime__time {
+            
+        }
+    }
 </style>

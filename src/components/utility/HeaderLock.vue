@@ -32,20 +32,20 @@
                 } 
             }"
         >
-            <div 
-                :class="['HeaderLock__container', headerClass]"
-                :style="[headerStyle]"
-                :id="[headerId]"
-            >
+            <div class="HeaderLock__container">
                 <div 
-                    class="HeaderLock__sidebar"
+                    :class="['HeaderLock__sidebar', sidebarClass]"
+                    :style="sidebarStyle"
+                    :id="sidebarId"
                     ref="sidebarEl"
                 >
                     <slot name="sidebar"></slot>
                 </div>
 
                 <div 
-                    class="HeaderLock__content"
+                    :class="['HeaderLock__content', contentClass]"
+                    :style="contentStyle"
+                    :id="contentId"
                     ref="contentEl"
                 >
                     <slot></slot>
@@ -67,20 +67,20 @@
             <slot name="header"></slot>
         </div>
         
-        <div 
-            :class="['HeaderLock__container', headerClass]"
-            :style="[headerStyle]"
-            :id="[headerId]"
-        >
+        <div class="HeaderLock__container">
             <div 
-                class="HeaderLock__sidebar"
+                :class="['HeaderLock__sidebar', sidebarStyle]"
+                :style="sidebarStyle"
+                :id="sidebarId"
                 ref="sidebarEl"
             >
                 <slot name="sidebar"></slot>
             </div>
 
             <div 
-                class="HeaderLock__content"
+                :class="['HeaderLock__content', contentClass]"
+                :style="contentStyle"
+                :id="contentId"
                 ref="contentEl"
             >
                 <slot></slot>
@@ -121,6 +121,18 @@ export default {
             type: String,
             default: null
         },
+        sidebarClass: {
+            type: String,
+            default: null
+        },
+        sidebarStyle: {
+            type: Object,
+            default: null
+        },
+        sidebarId: {
+            type: String,
+            default: null
+        },
         contentClass: {
             type: String,
             default: null
@@ -157,7 +169,7 @@ export default {
 
             // --- Compute padding-left amount ---
             const sidebarEl = this.$refs.sidebarEl;
-            this.headerLeftPadding = `${sidebarEl.offsetWidth}px`;
+            this.headerLeftPadding = `${Math.round(sidebarEl.offsetWidth - 1)}px`;
         },
         computeHeaderOutlinerStylings() {
             if (!this.lock) return;

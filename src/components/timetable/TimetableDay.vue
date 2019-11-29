@@ -7,7 +7,9 @@
         ]"
         :style="styles"
     >
-        {{ day }}
+        <span class="TimetableDay__day">
+            {{ day }}
+        </span>
     </div>
 </template>
 
@@ -49,5 +51,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "./timetable-common.scss";
 
+    .TimetableDay {
+        border-left: $line-style;
+        text-align: center;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        padding: 1rem 0;
+
+        & .TimetableDay__day {
+
+        }
+    }
 </style>

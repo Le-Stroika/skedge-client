@@ -86,6 +86,15 @@ export default {
             selected_color: {
                 primary: BLUE_ALT_2
             }
+        },
+        TimetableGrid: {
+            background_color: {
+                primary: GREY_2
+            },
+            accent_color: {
+                primary: "#303030",
+                secondary: "#383838" // #464646
+            }
         }
     }
 };

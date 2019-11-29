@@ -5,13 +5,24 @@
             lockHorizontalLegend ? 'lock-horizontal-legend' : null,
         ]"
         :lock="lockHorizontalLegend"
+
+        :header-class="horizontalLegendClass"
+        :header-style="horizontalLegendStyle"
+        :header-id="horizontalLegendId"
+
+        :sidebar-class="verticalLegendClass"
+        :sidebar-style="verticalLegendStyle"
+        :sidebar-id="verticalLegendId"
+
+        :content-class="gridClass"
+        :content-style="gridStyle"
+        :content-id="gridId"
     >
         <template #header>
             <div
                 v-if="enableHorizontalLegend" 
-                :class="['GridBase__horizontal-legend', horizontalLegendClass]"
-                :style="[horizontalLegendComputedStyles, horizontalLegendStyle]"
-                :id="[horizontalLegendId]"
+                class="GridBase__horizontal-legend"
+                :style="horizontalLegendComputedStyles"
                 ref="horizLegendEl"
             >
                 <slot name="horizontal-legend"></slot>
@@ -21,9 +32,8 @@
         <template #sidebar>
             <div 
                 v-if="enableVerticalLegend"
-                :class="['GridBase__vertical-legend', verticalLegendClass]"
-                :style="[verticalLegendComputedStyles, verticalLegendStyle]"
-                :id="[verticalLegendId]"
+                class="GridBase__vertical-legend"
+                :style="verticalLegendComputedStyles"
                 ref="vertLegendEl"
             >
                 <slot name="vertical-legend"></slot>
@@ -32,9 +42,8 @@
 
         <template>
             <div 
-                :class="['GridBase__grid', gridClass]"
-                :style="[gridComputedStyles, gridStyle]"
-                :id="[gridId]"
+                class="GridBase__grid"
+                :style="gridComputedStyles"
                 ref="gridEl"
             >
                 <slot></slot>
@@ -204,8 +213,6 @@ export default {
     .GridBase {
         width: 100%;
         height: 100%;
-
-        border-radius: 0.2rem;
 
         display: flex;
         flex-direction: column;

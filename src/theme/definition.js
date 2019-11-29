@@ -24,6 +24,19 @@ export const schema = {
     },
     SelectField: {
         $inherits: 'GLOBAL'
+    },
+    // Timetable components
+    TimetableGrid: {
+        $inherits: 'GLOBAL'
+    },
+    TimetableCell: {
+        $inherits: 'GLOBAL'
+    },
+    TimetableDay: {
+        $inherits: 'GLOBAL'
+    },
+    TimetableTime: {
+        $inherits: 'GLOBAL'
     }
 };
 
