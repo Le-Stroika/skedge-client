@@ -11,6 +11,7 @@
         vertical-legend-width="auto"
         horizontal-legend-height="auto"
         :lock-horizontal-legend="true"
+        :lock-vertical-legend="true"
 
         :cell-prefix="cellPrefix"
         :horizontal-legend-prefix="horizontalLegendPrefix"
@@ -18,7 +19,9 @@
 
         horizontal-legend-class="TimetableGrid__horizontal-legend"
         vertical-legend-class="TimetableGrid__vertical-legend"
+        corner-cell-class="TimetableGrid__corner-cell"
         grid-class="TimetableGrid__grid"
+        content-class="TimetableGrid__content"
     >
         <template #horizontal-legend>
             <timetable-day
@@ -105,15 +108,33 @@ export default {
         overflow: hidden;
 
         & /deep/ .TimetableGrid__horizontal-legend {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.637); // TODO: style
+            // border-bottom: 1px solid rgba(0, 0, 0, 0.637); // TODO: style
+            border-bottom: $line-style;
+
+            background-color: color-link('TimetableGrid', 'background_color', 'primary');
         }
 
         & /deep/ .TimetableGrid__vertical-legend {
             border-right: $line-style;
+
+            background-color: color-link('TimetableGrid', 'background_color', 'primary');
+        }
+
+        & /deep/ .TimetableGrid__corner-cell {
+            // border-bottom: 1px solid rgba(0, 0, 0, 0.637); // TODO: style
+            border-bottom: $line-style;
+            border-right: $line-style;
+
+            background-color: color-link('TimetableGrid', 'background_color', 'primary');
         }
 
         & /deep/ .TimetableGrid__grid {
             // background-color: yellowgreen;
+            
+        }
+
+        & /deep/ .TimetableGrid__content {
+
         }
     }
 </style>

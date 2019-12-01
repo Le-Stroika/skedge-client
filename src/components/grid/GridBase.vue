@@ -1,66 +1,95 @@
 <template>
-    <header-lock 
+    <div
         :class="[
             'GridBase',
             lockHorizontalLegend ? 'lock-horizontal-legend' : null,
         ]"
-        :lock="lockHorizontalLegend"
-
-        :header-class="horizontalLegendClass"
-        :header-style="horizontalLegendStyle"
-        :header-id="horizontalLegendId"
-
-        :sidebar-class="verticalLegendClass"
-        :sidebar-style="verticalLegendStyle"
-        :sidebar-id="verticalLegendId"
-
-        :content-class="gridClass"
-        :content-style="gridStyle"
-        :content-id="gridId"
     >
-        <template #header>
-            <div
-                v-if="enableHorizontalLegend" 
-                class="GridBase__horizontal-legend"
-                :style="horizontalLegendComputedStyles"
-                ref="horizLegendEl"
-            >
-                <slot name="horizontal-legend"></slot>
-            </div>
-        </template>
+        <overlay-scrollbar 
+            class="GridBase__scroll-container"
+            :options="{ 
+                paddingAbsolute: true,
+                scrollbars: {
+                    autoHide: 'leave'
+                }
+            }"
+        >
+                <div class="GridBase__container">
+                    <div 
+                        :class="['GridBase__grid', gridClass]"
+                        :style="[gridComputedStyles, gridStyle]"
+                        :id="[gridId]"
+                    >
+                        <div 
+                            v-if="enableHorizontalLegend"
+                            :class="[
+                                'GridBase__horizontal-legend', 
+                                (lockHorizontalLegend) ? 'lock' : null,
+                                horizontalLegendClass
+                            ]"
+                            :style="[
+                                horizontalLegendComputedStyles,
+                                horizontalLegendStyle
+                            ]"
+                            :id="[horizontalLegendId]"
+                        >
+                            <!-- Horizontal legend cells slot -->
+                            <slot name="horizontal-legend"></slot>
+                        </div>
 
-        <template #sidebar>
-            <div 
-                v-if="enableVerticalLegend"
-                class="GridBase__vertical-legend"
-                :style="verticalLegendComputedStyles"
-                ref="vertLegendEl"
-            >
-                <slot name="vertical-legend"></slot>
-            </div>
-        </template>
+                        <div 
+                            v-if="enableVerticalLegend"
+                            :class="[
+                                'GridBase__vertical-legend',
+                                (lockVerticalLegend) ? 'lock' : null,
+                                verticalLegendClass
+                            ]"
+                            :style="[
+                                verticalLegendComputedStyles,
+                                verticalLegendStyle
+                            ]"
+                            :id="[verticalLegendId]"
+                        >
+                            <!-- Vertical legend cells slot -->
+                            <slot name="vertical-legend"></slot>
+                        </div>
 
-        <template>
-            <div 
-                class="GridBase__grid"
-                :style="gridComputedStyles"
-                ref="gridEl"
-            >
-                <slot></slot>
-            </div>
-        </template>
-    </header-lock>
+                        <div 
+                            v-if="enableHorizontalLegend && enableVerticalLegend"
+                            :class="[
+                                'GridBase__corner-cell', 
+                                (lockHorizontalLegend) ? 'lock-horiz' : null,
+                                (lockVerticalLegend) ? 'lock-vert' : null,
+                                cornerCellClass
+                            ]"
+                            :style="[
+                                cornerCellComputedStyles,
+                                cornerCellStyle
+                            ]"
+                            :id="[cornerCellId]"
+                        >
+                            <!-- Corner cell slot -->
+                            <slot name="corner-cell"></slot>
+                        </div>
+
+                        <div 
+                            :class="['GridBase__content', contentClass]"
+                            :style="[contentComputedStyles, contentStyle]"
+                            :id="[contentId]"
+                        >
+                            <!-- Content cells slot -->
+                            <slot></slot>
+                        </div>
+                    </div>
+                </div>
+        </overlay-scrollbar>
+    </div>
 </template>
 
 <script>
-import HeaderLock from "@/components/utility/HeaderLock.vue";
-
 import { PositiveNumber, CSSGridLength, CSSGridFunc, CSSLength } from "../../validators";
 
 export default {
-    components: {
-        HeaderLock
-    },
     props: {
         cellsWide: {
             type: Number,
@@ -101,7 +130,12 @@ export default {
             default: "auto",
             validator: CSSLength
         },
+        // Lock props
         lockHorizontalLegend: {
+            type: Boolean,
+            default: false
+        },
+        lockVerticalLegend: {
             type: Boolean,
             default: false
         },
@@ -131,6 +165,18 @@ export default {
             type: Object,
             default: null
         },
+        contentClass: {
+            type: String,
+            default: null
+        },
+        contentId: {
+            type: String,
+            default: null
+        },
+        contentStyle: {
+            type: Object,
+            default: null
+        },
         horizontalLegendClass: {
             type: String,
             default: null
@@ -154,32 +200,78 @@ export default {
         verticalLegendStyle: {
             type: Object,
             default: null
+        },
+        cornerCellClass: {
+            type: String,
+            default: null
+        },
+        cornerCellId: {
+            type: String,
+            default: null
+        },
+        cornerCellStyle: {
+            type: Object,
+            default: null
         }
     },
     computed: {
+        // Computed styles
         gridComputedStyles() {
             return {
-                "grid-template-columns": this.templateColumns(this.cellPrefix),
-                "grid-template-rows": this.templateRows(this.cellPrefix)
+                "grid-template-columns": this.templateColumns(this.cellPrefix, this.verticalLegendPrefix),
+                "grid-template-rows": this.templateRows(this.cellPrefix, this.horizontalLegendPrefix)
             }
         },
         horizontalLegendComputedStyles() {
+            const startColNum = (this.enableVerticalLegend) ? "2" : "1";
+
             return {
                 "height": this.horizontalLegendHeight,
-                "grid-template-columns": this.templateColumns(this.horizontalLegendPrefix),
-                "grid-template-rows": "1fr"
+                "grid-column": `${startColNum} / -1`,
+                "grid-row": `${this.horizontalLegendPrefix}-start / ${this.horizontalLegendPrefix}-end`,
+
+                'grid-template-columns': this.templateColumns(this.horizontalLegendPrefix, null, true),
+                'grid-template-rows': 'auto'
             }
         },
         verticalLegendComputedStyles() {
+            const startRowNum = (this.enableHorizontalLegend) ? "2" : "1";
+
             return {
                 "width": this.verticalLegendWidth,
-                "grid-template-columns": "1fr",
-                "grid-template-rows": this.templateRows(this.verticalLegendPrefix)
+                "grid-column": `${this.verticalLegendPrefix}-start / ${this.verticalLegendPrefix}-end`,
+                "grid-row": `${startRowNum} / -1`,
+
+                'grid-template-columns': 'auto',
+                'grid-template-rows': this.templateRows(this.verticalLegendPrefix, null, true)
             }
         },
+        cornerCellComputedStyles() {
+            return {
+                'grid-column': `${this.verticalLegendPrefix}-start / ${this.verticalLegendPrefix}-end`,
+                'grid-row': `${this.horizontalLegendPrefix}-start / ${this.horizontalLegendPrefix}-end`
+            }
+        },
+        contentComputedStyles() {
+            const startColNum = (this.enableVerticalLegend) ? "2" : "1";
+            const startRowNum = (this.enableHorizontalLegend) ? "2" : "1";
+
+            return {
+                "grid-column": `${startColNum} / -1`,
+                "grid-row": `${startRowNum} / -1`,
+
+                'grid-template-columns': this.templateColumns(this.cellPrefix, null, true),
+                'grid-template-rows': this.templateRows(this.cellPrefix, null, true)
+            }
+        },
+        // Grid templates
         templateColumns() {
-            return (cellPrefix) => {
+            return (cellPrefix, verticalCellPrefix, skipVerticalCell = false) => {
                 let templateStr = "[";
+
+                if (this.enableHorizontalLegend && !skipVerticalCell) {
+                    templateStr += `${verticalCellPrefix}-start] ${this.verticalLegendWidth} [${verticalCellPrefix}-end `;
+                }
 
                 for (let cellNum = 1; cellNum <= this.cellsWide; cellNum++) {
                     const cellName = `${cellPrefix}-${cellNum}`;
@@ -192,8 +284,12 @@ export default {
             }
         },
         templateRows() {
-            return (cellPrefix) => {
+            return (cellPrefix, horizontalCellPrefix, skipHorizontalCell = false) => {
                 let templateStr = "[";
+
+                if (this.enableVerticalLegend && !skipHorizontalCell) {
+                    templateStr += `${horizontalCellPrefix}-start] ${this.horizontalLegendHeight} [${horizontalCellPrefix}-end `;
+                }
 
                 for (let cellNum = 1; cellNum <= this.cellsHigh; cellNum++) {
                     const cellName = `${cellPrefix}-${cellNum}`;
@@ -217,24 +313,64 @@ export default {
         display: flex;
         flex-direction: column;
 
-        & .GridBase__horizontal-legend {
-            display: grid;
-
-            width: 100%;
-            overflow: visible;
+        & .GridBase__scroll-container {
+            flex-grow: 1;
+            flex-shrink: 1;
         }
 
-        & .GridBase__vertical-legend {
-            flex-grow: 0;
-            flex-shrink: 0;
+        .GridBase__container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
 
-            display: grid;
-        }
+            & .GridBase__grid {
+                flex-grow: 0;
+                flex-shrink: 0;
 
-        & .GridBase__grid {
-            display: grid;
+                display: grid;
 
-            border-radius: 5rem;
+                width: 100%;
+
+                & .GridBase__horizontal-legend {
+                    &.lock {
+                        position: sticky;
+                        top: 0;
+                    }
+
+                    display: grid;
+
+                    z-index: 2;
+                }
+
+                & .GridBase__vertical-legend {
+                    &.lock {
+                        position: sticky;
+                        left: 0;
+                    }
+
+                    display: grid;
+
+                    z-index: 1;
+                }
+
+                & .GridBase__corner-cell {
+                    &.lock-horiz {
+                        position: sticky;
+                        top: 0;
+                    }
+
+                    &.lock-vert {
+                        position: sticky;
+                        left: 0;
+                    }
+
+                    z-index: 3;
+                }
+
+                & .GridBase__content {
+                    display: grid;
+                }
+            }
         }
     }
 </style>

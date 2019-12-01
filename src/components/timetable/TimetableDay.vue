@@ -54,7 +54,7 @@ export default {
     @import "./timetable-common.scss";
 
     .TimetableDay {
-        border-left: $line-style;
+        border-right: $line-style;
         text-align: center;
 
         display: flex;

@@ -23,14 +23,13 @@ export const main = () => ({
             vertical-legend-width="auto"
             horizontal-legend-height="auto"
             :lock-horizontal-legend="true"
+            :lock-vertical-legend="true"
 
             :style="{
                 'background-color': 'rgb(68, 68, 68)'
             }"
         >
-            <template
-                #horizontal-legend
-            >
+            <template #horizontal-legend>
                 <!-- Mock horizontal legend cells -->
                 <div
                     v-for="n in cellsWide"
@@ -38,16 +37,15 @@ export const main = () => ({
                     :style="{
                         'border': '1px solid black',
                         'grid-column': 'horiz-legend-' + n + '-start / horiz-legend-' + n + '-end',
-                        'grid-row': '1'
+                        'grid-row': '1',
+                        'background-color': 'dimgray'
                     }"
                 >
                     Horiz {{ n }}
                 </div>
             </template>
 
-            <template
-                #vertical-legend
-            >
+            <template #vertical-legend>
                 <!-- Mock vertical legend cells -->
                 <div
                     v-for="n in cellsHigh"
@@ -57,10 +55,25 @@ export const main = () => ({
                         'height': '100%',
                         'border': '1px solid black',
                         'grid-column': '1',
-                        'grid-row': 'vert-legend-' + n + '-start / vert-legend-' + n + '-end'
+                        'grid-row': 'vert-legend-' + n + '-start / vert-legend-' + n + '-end',
+                        'background-color': 'dimgray'
                     }"
                 >
                     Vert {{ n }}
+                </div>
+            </template>
+
+            <template #corner-cell>
+                <!-- Mock corner cell -->
+                <div
+                    :style="{
+                        'width': '100%',
+                        'height': '100%',
+                        'border': '1px solid black',
+                        'background-color': 'dimgray'
+                    }"
+                >
+                    Corner
                 </div>
             </template>
 
