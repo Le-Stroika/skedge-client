@@ -21,7 +21,12 @@ export default new Router({
         {
             path: '/fall-winter',
             name: "fall-winter",
-            component: () => import(/* webpackChunkName: "summer" */ '../views/FallWinter.vue')
+            component: () => import(/* webpackChunkName: "fall-winter" */ '../views/FallWinter.vue')
+        },
+        {
+            path: '/demo',
+            name: "demo",
+            component: () => import(/* webpackChunkName: "fall-winter" */ '../views/Demo.vue')
         }
     ]
 });
