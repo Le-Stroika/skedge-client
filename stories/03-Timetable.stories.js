@@ -1,4 +1,4 @@
-import TimetableGrid from "@/components/timetable/TimetableGrid.vue";
+import TimetableGrid from "@/components/timetable/grid/TimetableGrid.vue";
 
 export default {
     title: "Timetable"

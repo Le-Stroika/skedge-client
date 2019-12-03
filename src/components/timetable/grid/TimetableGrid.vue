@@ -24,23 +24,23 @@
         content-class="TimetableGrid__content"
     >
         <template #horizontal-legend>
-            <timetable-day
+            <timetable-day-cell
                 v-for="(day, idx) in days"
                 :key="idx"
                 :day="day"
                 :cell-prefix="horizontalLegendPrefix"
             >
-            </timetable-day>
+            </timetable-day-cell>
         </template>
 
         <template #vertical-legend>
-            <timetable-time
+            <timetable-time-cell
                 v-for="(time, idx) in times"
                 :key="idx"
                 :time="time"
                 :cell-prefix="verticalLegendPrefix"
                 :cells-per-time="cellsPerTime"
-            ></timetable-time>
+            ></timetable-time-cell>
         </template>
 
         <template>
@@ -66,9 +66,9 @@
 <script>
 import GridBase from "@/components/grid/GridBase.vue";
 
-import TimetableDay from "@/components/timetable/TimetableDay.vue";
-import TimetableTime from "@/components/timetable/TimetableTime.vue";
-import TimetableCell from "@/components/timetable/TimetableCell.vue";
+import TimetableDayCell from "@/components/timetable/grid/TimetableDayCell.vue";
+import TimetableTimeCell from "@/components/timetable/grid/TimetableTimeCell.vue";
+import TimetableCell from "@/components/timetable/grid/TimetableCell.vue";
 
 // TODO: try not to hardcode this in
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -78,8 +78,8 @@ const TIMES = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00",
 export default {
     components: {
         GridBase,
-        TimetableDay,
-        TimetableTime,
+        TimetableDayCell,
+        TimetableTimeCell,
         TimetableCell
     },
     data() {

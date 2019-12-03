@@ -1,7 +1,7 @@
 <template>
     <div
         :class="[
-            'TimetableTime',
+            'TimetableTimeCell',
             (this.isTopmost) ? 'topmost' : null,
             (this.isBottommost) ? 'bottommost' : null
         ]"
@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
     @import "./timetable-common.scss";
 
-    .TimetableTime {
+    .TimetableTimeCell {
         border-bottom: $line-style;
 
         display: flex;
@@ -73,7 +73,7 @@ export default {
             border-bottom: none;
         }
 
-        & .TimetableTime__time {
+        & .TimetableTimeCell__time {
             
         }
     }

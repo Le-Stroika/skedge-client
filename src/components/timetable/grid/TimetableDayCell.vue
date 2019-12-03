@@ -1,13 +1,13 @@
 <template>
     <div
         :class="[
-            'TimetableDay', 
+            'TimetableDayCell', 
             (this.isLeftmost) ? 'leftmost' : null,
             (this.isRightMost) ? 'rightmost' : null
         ]"
         :style="styles"
     >
-        <span class="TimetableDay__day">
+        <span class="TimetableDayCell__day">
             {{ day }}
         </span>
     </div>
@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
     @import "./timetable-common.scss";
 
-    .TimetableDay {
+    .TimetableDayCell {
         border-right: $line-style;
         text-align: center;
 
@@ -64,7 +64,11 @@ export default {
 
         padding: 1rem 0;
 
-        & .TimetableDay__day {
+        &.rightmost {
+            border-right: none;
+        }
+
+        & .TimetableDayCell__day {
 
         }
     }
