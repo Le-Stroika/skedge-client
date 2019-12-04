@@ -324,10 +324,12 @@ export default {
             flex-wrap: nowrap;
 
             & .GridBase__grid {
-                flex-grow: 0;
+                flex-grow: 1;
                 flex-shrink: 0;
 
-                display: grid;
+                width: auto;
+
+                display: grid;  
 
                 & .GridBase__horizontal-legend {
                     &.lock {
