@@ -329,8 +329,6 @@ export default {
 
                 display: grid;
 
-                width: 100%;
-
                 & .GridBase__horizontal-legend {
                     &.lock {
                         position: sticky;
