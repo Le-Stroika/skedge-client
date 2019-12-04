@@ -339,7 +339,7 @@ export default {
 
                     display: grid;
 
-                    z-index: 2;
+                    z-index: 5;
                 }
 
                 & .GridBase__vertical-legend {
@@ -350,7 +350,7 @@ export default {
 
                     display: grid;
 
-                    z-index: 1;
+                    z-index: 4;
                 }
 
                 & .GridBase__corner-cell {
@@ -364,7 +364,7 @@ export default {
                         left: 0;
                     }
 
-                    z-index: 3;
+                    z-index: 6;
                 }
 
                 & .GridBase__content {

@@ -87,9 +87,9 @@ export default {
             days: [ ...DAYS ],
             times: [ ...TIMES ],
             cellsPerTime: 2, // The number of cells per every time-slot
-            cellPrefix: "slot",
-            horizontalLegendPrefix: "day",
-            verticalLegendPrefix: "time"
+            cellPrefix: "slot", // TODO: don't harcode
+            horizontalLegendPrefix: "day", // TODO: don't hardcode
+            verticalLegendPrefix: "time" // TODO: don't hardcode
         }
     }
 }
