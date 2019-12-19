@@ -47,7 +47,7 @@
             <!-- Passthrough the cell items -->
             <slot></slot>
 
-            <!-- Generate timetable cells -->
+            <!-- Generate timetable background cells -->
             <timetable-cell
                 v-for="n in (times.length * days.length)"
                 :key="n"
@@ -56,7 +56,7 @@
                 :cells-wide="days.length"
                 :cells-high="times.length"
                 :cell-width="1"
-                :cell-height="2"
+                :cell-height="hourlyBreakup"
             >
             </timetable-cell>
         </template>
@@ -64,16 +64,15 @@
 </template>
 
 <script>
+import { HOUR_LIST as TIMES, DAY_LIST_FULL as DAYS, HOURLY_BREAKUP } from "../../../constants/timetable";
+
 import GridBase from "@/components/grid/GridBase.vue";
 
 import TimetableDayCell from "@/components/timetable/grid/TimetableDayCell.vue";
 import TimetableTimeCell from "@/components/timetable/grid/TimetableTimeCell.vue";
 import TimetableCell from "@/components/timetable/grid/TimetableCell.vue";
 
-// TODO: try not to hardcode this in
-const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-const TIMES = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", 
-                "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
+// TODO: implement responsive day list shortening
 
 export default {
     components: {
@@ -82,14 +81,26 @@ export default {
         TimetableTimeCell,
         TimetableCell
     },
+    props: {
+        cellPrefix: {
+            type: String,
+            default: "slot"
+        },
+        horizontalLegendPrefix: {
+            type: String,
+            default: "day"
+        },
+        verticalLegendPrefix: {
+            type: String,
+            default: "time"
+        }
+    },
     data() {
         return {
             days: [ ...DAYS ],
             times: [ ...TIMES ],
-            cellsPerTime: 2, // The number of cells per every time-slot
-            cellPrefix: "slot", // TODO: don't harcode
-            horizontalLegendPrefix: "day", // TODO: don't hardcode
-            verticalLegendPrefix: "time" // TODO: don't hardcode
+            hourlyBreakup: HOURLY_BREAKUP,
+            cellsPerTime: 2 // The number of cells per every time-slot
         }
     }
 }
