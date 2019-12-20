@@ -5,7 +5,7 @@
                 <timetable-grid
                     class="Demo__grid"
                 >
-                    <timetable-item
+                    <!-- <timetable-activity
                         v-for="(data, idx) in grid1Data"
                         :key="data.name + data.startTime + data.endTime + '1'"
                         :start-time="data.startTime"
@@ -14,14 +14,14 @@
                         :color="data.color"
                     >
                         {{ data.name }}
-                    </timetable-item>
+                    </timetable-activity> -->
                 </timetable-grid>
             </div>
             <div class='Demo__grid-container'>
-                <timetable-grid
+                <!-- <timetable-grid
                     class="Demo__grid"
                 >
-                    <timetable-item
+                    <timetable-activity
                         v-for="(data, idx) in grid2Data"
                         :key="data.name + data.startTime + data.endTime + '2'"
                         :start-time="data.startTime"
@@ -30,8 +30,8 @@
                         :color="data.color"
                     >
                         {{ data.name }}
-                    </timetable-item>
-                </timetable-grid>
+                    </timetable-activity>
+                </timetable-grid> -->
             </div>
         </div>
     </div> 
@@ -39,12 +39,12 @@
 
 <script>
 import TimetableGrid from "@/components/timetable/grid/TimetableGrid.vue";
-import TimetableItem from "@/components/timetable/TimetableItem.vue";
+import TimetableActivity from "@/components/timetable/TimetableActivity.vue";
 
 export default {
     components: {
         TimetableGrid,
-        TimetableItem
+        TimetableActivity
     },
     data() {
         return {

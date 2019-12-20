@@ -14,15 +14,14 @@
 </template>
 
 <script>
-// TODO: try not to hardcode this in
-const TIMES = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", 
-                "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
-
 export default {
     props: {
         time: {
             type: String,
-            validator: val => TIMES.includes(val),
+            required: true
+        },
+        timesList: {
+            type: Array,
             required: true
         },
         cellPrefix: {
@@ -36,13 +35,13 @@ export default {
     },
     computed: {
         timeNum() {
-            return (TIMES.indexOf(this.time) * this.cellsPerTime) + 1;
+            return (this.timesList.indexOf(this.time) * this.cellsPerTime) + 1;
         },
         isTopmost() {
             return this.timeNum === 1;
         },
         isBottommost() {
-            return this.timeNum === TIMES.length * this.cellsPerTime - 1;
+            return this.timeNum === this.timesList.length * this.cellsPerTime - 1;
         },
         styles() {
             // Compute what cells this current timetable time cell should span

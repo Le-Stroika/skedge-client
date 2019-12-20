@@ -3,7 +3,7 @@
         class="TimetableGrid"
         :cells-wide="days.length"
         :cells-high="times.length * cellsPerTime"
-        cell-width="minmax(13rem, 1fr)"
+        cell-width="minmax(10rem, 1fr)"
         cell-height="3rem"
 
         :enable-horizontal-legend="true"
@@ -28,6 +28,7 @@
                 v-for="(day, idx) in days"
                 :key="idx"
                 :day="day"
+                :days-list="days"
                 :cell-prefix="horizontalLegendPrefix"
             >
             </timetable-day-cell>
@@ -38,6 +39,7 @@
                 v-for="(time, idx) in times"
                 :key="idx"
                 :time="time"
+                :times-list="times"
                 :cell-prefix="verticalLegendPrefix"
                 :cells-per-time="cellsPerTime"
             ></timetable-time-cell>
@@ -72,7 +74,7 @@ import TimetableDayCell from "@/components/timetable/grid/TimetableDayCell.vue";
 import TimetableTimeCell from "@/components/timetable/grid/TimetableTimeCell.vue";
 import TimetableCell from "@/components/timetable/grid/TimetableCell.vue";
 
-// TODO: implement responsive day list shortening
+// TODO: implement responsive day string list shortening
 
 export default {
     components: {

@@ -14,14 +14,14 @@
 </template>
 
 <script>
-// TODO: try not to hardcode this in
-const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-
 export default {
     props: {
         day: {
             type: String,
-            validator: val => DAYS.includes(val),
+            required: true
+        },
+        daysList: {
+            type: Array,
             required: true
         },
         cellPrefix: {
@@ -31,13 +31,13 @@ export default {
     },
     computed: {
         dayNum() {
-            return DAYS.indexOf(this.day) + 1;
+            return this.daysList.indexOf(this.day) + 1;
         },
         isLeftmost() {
             return this.dayNum === 1;
         },
         isRightMost() {
-            return this.dayNum === DAYS.length;
+            return this.dayNum === this.daysList.length;
         },
         styles() {
             // Compute what cells this current timetable day cell should span
