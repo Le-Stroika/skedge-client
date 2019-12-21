@@ -81,9 +81,18 @@ export const main = () => ({
                     day: toDay("Friday"), 
                     color: "#346789" 
                 },
+                { 
+                    courseCode: "CSCC01", 
+                    activityName: "TUT 0006",
+                    location: "AA 206",
+                    startTime: toStart("11:00"), 
+                    endTime: toEnd("12:00"), 
+                    day: toDay("Monday"), 
+                    color: "#65B2BE" 
+                },
             ],
             conflicts: [
-                [0, 2] // Indexes of items in data list
+                [0, 2, 7] // Indexes of items in data list
             ]
         }
     },

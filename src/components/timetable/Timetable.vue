@@ -1,5 +1,7 @@
 <template>
-    <timetable-grid>
+    <timetable-grid
+        :cell-height="cellHeight"
+    >
         <!-- Render unconflicted timetable items -->
         <timetable-activity
             v-for="(item, idx) in unconflictedItems"
@@ -27,6 +29,8 @@
             :start-time="group.startTime"
             :end-time="group.endTime"
             :day="group.day"
+
+            :cell-height="cellHeight"    
         >
             <timetable-activity
                 v-for="(item, idx) in group.items"
@@ -35,6 +39,7 @@
                 :start-time="item.startTime"
                 :end-time="item.endTime"
                 :day="item.day"
+                :compute-grid-column="false"
 
                 :course-code="item.courseCode"
                 :activity-name="item.activityName"
@@ -72,6 +77,11 @@ export default {
             type: Array,
             validator: TimetableConflictData,
             default: () => ([])
+        }
+    },
+    data() {
+        return {
+            cellHeight: "3rem"
         }
     },
     computed: {
@@ -137,9 +147,6 @@ export default {
         isConflicted(courseCode, activityName) {
             return !!this.conflictMap[`${courseCode}-${activityName}`];
         }
-    },
-    mounted() {
-        console.log(this.conflictGroups);
     }
 }
 </script>

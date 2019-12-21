@@ -4,7 +4,7 @@
         :cells-wide="days.length"
         :cells-high="times.length * cellsPerTime"
         cell-width="minmax(10rem, 1fr)"
-        cell-height="3rem"
+        :cell-height="cellHeight"
 
         :enable-horizontal-legend="true"
         :enable-vertical-legend="true"
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { CSSGridFunc, CSSGridLength } from "../../../validators";
 import { HOUR_LIST as TIMES, DAY_LIST_FULL as DAYS, HOURLY_BREAKUP } from "../../../constants/timetable";
 
 import GridBase from "@/components/grid/GridBase.vue";
@@ -95,7 +96,12 @@ export default {
         verticalLegendPrefix: {
             type: String,
             default: "time"
-        }
+        },
+        cellHeight: {
+            type: String,
+            default: "15rem",
+            validator: (val) => CSSGridLength(val) || CSSGridFunc(val)
+        },
     },
     data() {
         return {

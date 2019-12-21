@@ -44,6 +44,10 @@ export default {
             type: String,
             default: "slot"
         },
+        computeGridColumn: {
+            type: Boolean,
+            default: true
+        }
     },
     computed: {
         computedStyles() {
@@ -54,7 +58,7 @@ export default {
             const endCol = `${this.cellPrefix}-${this.day}-end`;
 
             return {
-                'grid-column': `${startCol} / ${endCol}`,
+                'grid-column': (this.computeGridColumn) ? `${startCol} / ${endCol}` : null,
                 'grid-row': `${startRow} / ${endRow}`,
                 'background-color': this.color
             }
