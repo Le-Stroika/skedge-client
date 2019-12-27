@@ -6,7 +6,12 @@ import * as LoaderManager from "./LoaderManager";
 
 // TODO: modal registration should be moved out to a different file
 export const REGISTERED_MODALS = {
-    "_BASE_": "@/components/modals/ModalBase.vue"
+    "_BASE_": { 
+        path: "@/components/modals/ModalBase.vue",
+        props: {},
+        params: {},
+        events: {}
+    }
 };
 
 const DEFAULT_PROPS = {};
@@ -20,7 +25,12 @@ const DEFAULT_PARAMS = {
 const DEFAULT_EVENTS = {};
 
 export async function showModal(_this, modalName, props = {}, params = {}, events = {}) {
-    const modalPath = REGISTERED_MODALS[modalName];
+    const { 
+        path: modalPath, 
+        props: modalProps, 
+        params: modalParams, 
+        events: modalEvents 
+    } = REGISTERED_MODALS[modalName];
 
     if (!modalPath) {
         throw `Modal '${modalName}' not found.`;
@@ -32,8 +42,8 @@ export async function showModal(_this, modalName, props = {}, params = {}, event
     // Args: component/name, props, params, events
     _this.$modal.show(
         Component, 
-        { ...DEFAULT_PROPS, ...props }, 
-        { ...DEFAULT_PARAMS, ...params }, 
-        { ...DEFAULT_EVENTS, ...events }
+        { ...DEFAULT_PROPS, ...modalProps, ...props }, 
+        { ...DEFAULT_PARAMS, ...modalParams, ...params }, 
+        { ...DEFAULT_EVENTS, ...modalEvents, ...events }
     );
 }
