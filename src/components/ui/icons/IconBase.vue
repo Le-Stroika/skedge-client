@@ -1,14 +1,14 @@
 <template>
-    <span
+    <div 
         class="BaseIcon"
-        @click="$emit('click', $event)"
+        :style="styles"
     >
-        <md-icon 
-            :style="iconStyles"
-        >
-            <slot></slot>
-        </md-icon>
-    </span>
+        <component 
+            class="BaseIcon__container"
+            @click="$emit('click', $event)"
+            :is="iconNameNormalized"
+        ></component>
+    </div>
 </template>
 
 <script>
@@ -20,12 +20,44 @@ export default {
             type: String,
             validator: Utilities.isCSSLength,
             default: "3rem"
+        },
+        iconName: {
+            type: String,
+            required: true
         }
     },
     computed: {
-        iconStyles() {
-            return Utilities.getIconSizeCSSStyles(this.size);
+        iconNameNormalized() {
+            if (!this.iconName.endsWith("-icon") && !this.iconName.endsWith("Icon")) {
+                return `${this.iconName}-icon`;
+            }
+
+            return this.iconName;
+        },
+        styles() {
+            return {
+                height: this.size,
+                width: this.size
+            }
         }
     }
 }
 </script>
+
+<style lang="scss">
+    .BaseIcon {
+        display: flex;
+
+        & .BaseIcon__container {
+            width: 100%;
+            height: 100%;
+        }
+
+        & /deep/ svg {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+        }
+    }
+</style>

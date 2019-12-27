@@ -112,21 +112,6 @@ export function isDirection(i_sDirection) {
     return ["right", "left", "up", "down"].indexOf(i_sDirection) !== -1;
 }
 
-/**
- * Returns an object containing all neccessairy styles to configure the md-icon component.
- * 
- * @param {String} i_sSize The CSS size.
- * @param {String} i_sFontSizeModifier The increase modifier for the font-size relative to the base size.
- */
-export function getIconSizeCSSStyles(i_sSize, i_sFontSizeModifier = '0rem') {
-    return {
-        width: i_sSize,
-        height: i_sSize,
-        minWidth: i_sSize,
-        fontSize: `calc(${i_sSize} + ${i_sFontSizeModifier}) !important`
-    }
-}
-
 // Taken from: https://davidwalsh.name/javascript-debounce-function
 export function debounce(func, wait, immediate) {
     var timeout;

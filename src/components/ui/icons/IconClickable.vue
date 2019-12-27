@@ -3,9 +3,7 @@
         :class="['IconClickable', disabled ? 'disabled' : '']"
         v-bind="$attrs"
         @click="onClick"
-    >
-        <slot></slot>
-    </icon-base>
+    ></icon-base>
 </template>
 
 <script>

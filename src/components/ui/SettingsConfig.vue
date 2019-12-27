@@ -12,15 +12,14 @@
     >
         <!-- Settings cog -->
         <icon-clickable
+            icon-name="settings"
             :class="['SettingsCog', cogClass]"
             :id="[cogId]"
             :style="[cogStyle]"
             size="3rem"
             ref="cogRef"
             @click="toggleMenu"
-        >
-            settings
-        </icon-clickable>
+        />
 
         <!-- Tooltip menu -->
         <template slot="popover">
@@ -35,12 +34,11 @@
                         General Settings
                     </div>
                     <icon-clickable 
+                        icon-name="close"
                         class="SettingsTooltip__header-close"
                         @click="closeMenu"
                         size="2.3rem"
-                    >
-                        close
-                    </icon-clickable>
+                    />
                 </div>
 
                 <div class="SettingsTooltip__theme-select">

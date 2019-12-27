@@ -6,6 +6,7 @@
         :namespace="defaultNamespace" 
         use-root
     >
+        <notification-register></notification-register>
         <!-- <div id="nav">
             <router-link to="/">Home</router-link>|
             <router-link to="/summer">Summer Scheduler</router-link>|
@@ -31,9 +32,12 @@ import themes from "./theme/themes";
 import ThemeProvider from "@/components/wrappers/ThemeProvider.vue";
 import { DEFAULT_NAMESPACE, DEFAULT_THEME } from "./constants/generalConstants";
 
+import NotificationRegister from "@/registers/NotificationRegister.vue";
+
 export default {
     components: {
-        themeProvider: ThemeProvider
+        ThemeProvider,
+        NotificationRegister
     },
     data() {
         return {
