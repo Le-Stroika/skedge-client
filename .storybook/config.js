@@ -4,6 +4,7 @@ import { withRootAttribute } from "storybook-addon-root-attribute";
 import Vue from 'vue';
 import VTooltip from 'v-tooltip';
 import VSelect from 'vue-select';
+import VModal from 'vue-js-modal';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 import { MdIcon } from 'vue-material/dist/components';
 
@@ -30,6 +31,9 @@ Vue.component('v-select', VSelect);
 
 // Overlay scrollbars
 Vue.component('overlay-scrollbar', OverlayScrollbarsComponent);
+
+// Vue modal
+Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 
 
 // ------------------------------------
