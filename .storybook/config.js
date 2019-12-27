@@ -5,13 +5,14 @@ import Vue from 'vue';
 import VTooltip from 'v-tooltip';
 import VSelect from 'vue-select';
 import VModal from 'vue-js-modal';
+import VNotification from "vue-notification";
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
-import { MdIcon } from 'vue-material/dist/components';
+
+import * as IconRegister from "../src/registers/IconRegister";
 
 // Global sass imports
 import "../src/styles/global.scss"; // Client global sass
 import "../stories/global-story-styles.scss"; // Storybook-specific global sass
-import 'vue-material/dist/vue-material.min.css';
 import "vue-select/src/scss/vue-select.scss";
 import 'overlayscrollbars/css/OverlayScrollbars.min.css';
 
@@ -20,8 +21,8 @@ import 'overlayscrollbars/css/OverlayScrollbars.min.css';
 // --- Setup library components ---
 // --------------------------------
 
-// Material UI 
-Vue.use(MdIcon);
+// Register all the used icons
+IconRegister.registerIcons();
 
 // V-tooltip
 Vue.use(VTooltip);
@@ -34,6 +35,9 @@ Vue.component('overlay-scrollbar', OverlayScrollbarsComponent);
 
 // Vue modal
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
+
+// Vue notification
+Vue.use(VNotification);
 
 
 // ------------------------------------

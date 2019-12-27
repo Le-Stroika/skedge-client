@@ -1,15 +1,10 @@
 import { ModalManager } from "../src/managers";
 
-import ModalBase from "@/components/modals/ModalBase.vue";
-
 export default {
-    title: "Modal Tests"
+    title: "Modals"
 };
 
 export const base = () => ({
-    components: {
-        ModalBase
-    },
     template: `
         <div>
             <button @click="showModal">Show Modal</button>
