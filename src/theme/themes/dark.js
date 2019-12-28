@@ -18,6 +18,16 @@ const BLUE_ALT_3 = "#5485BD";
 
 const BLUE_GREY_1 = "#55596C";
 
+const ERROR_BG = "#723737";
+const ERROR_TEXT = "#FF6464";
+const WARNING_BG = "#635C42";
+const WARNING_TEXT = "#E5E947";
+const SUCCESS_BG = "#375337";
+const SUCCESS_TEXT = "#60E14C";
+const INFO_BG = "#4A677B";
+const INFO_TEXT = "#4DE6FB";
+
+
 export default {
     name: "dark",
     theme: {
@@ -57,6 +67,22 @@ export default {
                 hover_color: {
                     primary: BLUE_GREY_1
                 }
+            },
+            error_color: {
+                background: ERROR_BG,
+                text: ERROR_TEXT
+            },
+            warning_color: {
+                background: WARNING_BG,
+                text: WARNING_TEXT
+            },
+            success_color: {
+                background: SUCCESS_BG,
+                text: SUCCESS_TEXT
+            },
+            info_color: {
+                background: INFO_BG,
+                text: INFO_TEXT
             }
         },
         Checkbox: {

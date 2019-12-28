@@ -1,0 +1,25 @@
+.vue-notification {
+    padding: initial;
+    margin: initial;
+  
+    font-size: initial;
+  
+    color: initial;
+    background: initial;
+    border-left: initial;
+  
+    &.warn {
+      background: initial;
+      border-left-color: initial;
+    }
+  
+    &.error {
+      background: initial;
+      border-left-color: initial;
+    }
+  
+    &.success {
+      background: initial;
+      border-left-color: initial;
+    }
+}

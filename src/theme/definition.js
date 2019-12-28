@@ -37,7 +37,20 @@ export const schema = {
     },
     TimetableTime: {
         $inherits: 'GLOBAL'
-    }
+    },
+    // Notification components
+    ErrorNotification: {
+        $inherits: 'GLOBAL'
+    },
+    WarningNotification: {
+        $inherits: 'GLOBAL'
+    },
+    SuccessNotification: {
+        $inherits: 'GLOBAL'
+    },
+    InfoNotification: {
+        $inherits: 'GLOBAL'
+    },
 };
 
 export const mixins = {
@@ -71,6 +84,19 @@ export const mixins = {
             hover_color: {
                 $mixins: ['primary_modifier']
             }
+        },
+        // Notification colors
+        error_color: {
+            $mixins: ['background_modifier', 'text_modifier']
+        },
+        warning_color: {
+            $mixins: ['background_modifier', 'text_modifier']
+        },
+        success_color: {
+            $mixins: ['background_modifier', 'text_modifier']
+        },
+        info_color: {
+            $mixins: ['background_modifier', 'text_modifier']
         }
     },
     // ------------------
@@ -114,6 +140,18 @@ export const mixins = {
     },
     quaternary_modifier: {
         quaternary: {
+            $type: "color",
+            $required: true
+        }
+    },
+    background_modifier: {
+        background: {
+            $type: "color",
+            $required: true
+        }
+    },
+    text_modifier: {
+        text: {
             $type: "color",
             $required: true
         }
