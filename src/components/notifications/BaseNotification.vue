@@ -146,11 +146,11 @@ export default {
         // Note: this should be overrided by the components that use it
         background-color: color-link("GLOBAL", "background_color", "secondary");
 
+        box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.3);
+
         border-radius: 0.3rem;
-        
-        margin-right: 1rem;
-        margin-top: 1rem;
-        margin-left: 1rem;
+
+        margin: 0.52rem 1rem;
 
         padding: 1rem 2.5rem 1rem 1rem;
 
