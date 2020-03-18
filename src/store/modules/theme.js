@@ -45,7 +45,7 @@ const state = {
 
 const getters = {
     // Theme getters
-    [getterTypes.GET_ALL_NAMESPACES]: (state) => {
+    [getterTypes.GET_ALL_THEMES]: (state) => {
         return state.themes;
     },
     [getterTypes.GET_THEME]: (state) => {
